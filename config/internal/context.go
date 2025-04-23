@@ -14,7 +14,7 @@ import (
 
 // CONFIG_TYPE_SUFFIX is the standard suffix used for configuration
 // types provided by this library.
-const CONFIG_TYPE_SUFFIX = ".config" + attributes.TYPE_GROUP_SUFFIX
+const CONFIG_TYPE_SUFFIX = ".config" + datacontext.TYPE_GROUP_SUFFIX
 
 type ConfigSelector interface {
 	Select(Config) bool
@@ -27,7 +27,7 @@ var AllConfigs = AppliedConfigSelectorFunction(func(*AppliedConfig) bool { retur
 
 const AllGenerations int64 = 0
 
-const CONTEXT_TYPE = "config" + attributes.CONTEXT_SUFFIX
+const CONTEXT_TYPE = "config" + datacontext.CONTEXT_SUFFIX
 
 type ContextProvider interface {
 	ConfigContext() Context

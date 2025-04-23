@@ -12,13 +12,8 @@ import (
 	ctxlog "github.com/mandelsoft/datacontext/logging"
 )
 
-const TYPE_GROUP_SUFFIX = ".mandelsoft.de"
-const CONTEXT_SUFFIX = ".context" + TYPE_GROUP_SUFFIX
-
-////////////////////////////////////////////////////////////////////////////////
-
 // CONTEXT_TYPE is the global type for an attribute context.
-const CONTEXT_TYPE = "attributes" + CONTEXT_SUFFIX
+const CONTEXT_TYPE = "attributes" + datacontext.CONTEXT_SUFFIX
 
 type AttributesContext = datacontext.AttributesContext
 

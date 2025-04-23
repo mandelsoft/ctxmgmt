@@ -70,9 +70,10 @@ func (c *Config) GetType() string {
 
 func (c *Config) ApplyTo(ctx cpi.Context, target interface{}) error {
 	// first: check for forward configuration
+	// TODO: context type registry
 	if lc, ok := target.(*logdata.LoggingConfiguration); ok {
 		switch c.ContextType {
-		case "default", "ocm", "global", "slave":
+		case "default", "global", "slave":
 			lc.LogConfig.DefaultLevel = c.Settings.DefaultLevel
 			lc.LogConfig.Rules = append(lc.LogConfig.Rules, c.Settings.Rules...)
 		}
