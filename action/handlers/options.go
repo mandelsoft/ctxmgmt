@@ -3,7 +3,7 @@ package handlers
 import (
 	"slices"
 
-	"github.com/mandelsoft/datacontext/action/api"
+	"github.com/mandelsoft/ctxmgmt/action/api"
 )
 
 type (

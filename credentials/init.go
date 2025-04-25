@@ -1,7 +1,7 @@
 package credentials
 
 import (
-	_ "github.com/mandelsoft/datacontext/credentials/builtin"
-	_ "github.com/mandelsoft/datacontext/credentials/config"
-	_ "github.com/mandelsoft/datacontext/credentials/extensions/repositories"
+	_ "github.com/mandelsoft/ctxmgmt/credentials/builtin"
+	_ "github.com/mandelsoft/ctxmgmt/credentials/config"
+	_ "github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories"
 )

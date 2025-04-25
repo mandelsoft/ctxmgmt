@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/mandelsoft/datacontext/config/internal"
+	"github.com/mandelsoft/ctxmgmt/config/internal"
 )
 
 var Realm = internal.Realm

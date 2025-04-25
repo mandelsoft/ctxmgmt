@@ -7,8 +7,8 @@ import (
 	"github.com/mandelsoft/goutils/general"
 	"github.com/mandelsoft/vfs/pkg/vfs"
 
-	cfgcpi "github.com/mandelsoft/datacontext/config/cpi"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	cfgcpi "github.com/mandelsoft/ctxmgmt/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 	"github.com/mandelsoft/goutils/signutils"
 )
 

@@ -6,7 +6,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/utils/registrations"
+	"github.com/mandelsoft/ctxmgmt/utils/registrations"
 )
 
 type Target interface{}

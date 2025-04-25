@@ -5,9 +5,9 @@ import (
 	"path"
 	"strings"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/credentials/identity/hostpath"
-	"github.com/mandelsoft/datacontext/utils/listformat"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/hostpath"
+	"github.com/mandelsoft/ctxmgmt/utils/listformat"
 )
 
 const CONSUMER_TYPE = "Github"

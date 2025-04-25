@@ -4,9 +4,9 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/credentials"
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/credentials/identity/hostpath"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/hostpath"
 )
 
 func IdentityMatcher(pattern, cur, id cpi.ConsumerIdentity) bool {

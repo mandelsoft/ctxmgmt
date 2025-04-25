@@ -8,7 +8,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 type ObjectType struct {

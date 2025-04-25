@@ -3,10 +3,10 @@ package credentials
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext/credentials/extensions/repositories/directcreds"
-	"github.com/mandelsoft/datacontext/credentials/internal"
-	common "github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/directcreds"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
+	common "github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (

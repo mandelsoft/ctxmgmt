@@ -8,7 +8,7 @@ import (
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/maputils"
 
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (

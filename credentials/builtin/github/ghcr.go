@@ -3,9 +3,9 @@ package github
 import (
 	"os"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/oci"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/oci"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 const HOST = "ghcr.io"

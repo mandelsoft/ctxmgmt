@@ -1,7 +1,7 @@
 package internal
 
 import (
-	ctxlog "github.com/mandelsoft/datacontext/logging"
+	ctxlog "github.com/mandelsoft/ctxmgmt/logging"
 )
 
 var (

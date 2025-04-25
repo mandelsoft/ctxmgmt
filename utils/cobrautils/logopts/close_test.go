@@ -4,9 +4,9 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/mandelsoft/datacontext"
-	cfgctx "github.com/mandelsoft/datacontext/config"
-	loggingopt "github.com/mandelsoft/datacontext/utils/cobrautils/logopts/logging"
+	"github.com/mandelsoft/ctxmgmt"
+	cfgctx "github.com/mandelsoft/ctxmgmt/config"
+	loggingopt "github.com/mandelsoft/ctxmgmt/utils/cobrautils/logopts/logging"
 	. "github.com/mandelsoft/goutils/testutils"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -15,7 +15,7 @@ import (
 	"github.com/mandelsoft/vfs/pkg/osfs"
 	"github.com/mandelsoft/vfs/pkg/vfs"
 
-	"github.com/mandelsoft/datacontext/attrs/vfsattr"
+	"github.com/mandelsoft/ctxmgmt/attrs/vfsattr"
 )
 
 var _ = Describe("log file", func() {
@@ -30,7 +30,7 @@ var _ = Describe("log file", func() {
 	})
 
 	It("closes log file", func() {
-		ctx := cfgctx.New(datacontext.MODE_INITIAL)
+		ctx := cfgctx.New(ctxmgmt.MODE_INITIAL)
 		lctx := logging.NewDefault()
 
 		vfsattr.Set(ctx, fs)

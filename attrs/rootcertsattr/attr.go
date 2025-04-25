@@ -7,8 +7,8 @@ import (
 
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 	"github.com/mandelsoft/goutils/signutils"
 )
 
@@ -18,12 +18,12 @@ const (
 )
 
 type (
-	Context         = datacontext.AttributesContext
-	ContextProvider = datacontext.ContextProvider
+	Context         = ctxmgmt.AttributesContext
+	ContextProvider = ctxmgmt.ContextProvider
 )
 
 func init() {
-	datacontext.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
+	ctxmgmt.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
 }
 
 type AttributeType struct{}
@@ -139,7 +139,7 @@ func (a *Attribute) GetRootCertPool(system bool) *x509.CertPool {
 ////////////////////////////////////////////////////////////////////////////////
 
 func Get(ctx ContextProvider) *Attribute {
-	return ctx.AttributesContext().GetAttributes().GetOrCreateAttribute(ATTR_KEY, func(ctx datacontext.Context) interface{} {
+	return ctx.AttributesContext().GetAttributes().GetOrCreateAttribute(ATTR_KEY, func(ctx ctxmgmt.Context) interface{} {
 		return &Attribute{}
 	}).(*Attribute)
 }

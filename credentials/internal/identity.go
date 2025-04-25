@@ -9,7 +9,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 func init() {
@@ -129,8 +129,10 @@ func NewConsumerIdentity(typ string, attrs ...string) ConsumerIdentity {
 
 	i := 0
 	for len(attrs) > i {
-		r[attrs[i]] = attrs[i+1]
-		i += 2
+		if attrs[i+1] != "" {
+			r[attrs[i]] = attrs[i+1]
+			i += 2
+		}
 	}
 	return r
 }

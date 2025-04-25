@@ -1,17 +1,17 @@
-package datacontext_test
+package ctxmgmt_test
 
 import (
 	"runtime"
 	"time"
 
-	"github.com/mandelsoft/datacontext/attributes"
+	"github.com/mandelsoft/ctxmgmt/attributes"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
 	"github.com/mandelsoft/goutils/general"
 
-	me "github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	me "github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 var _ = Describe("area test", func() {

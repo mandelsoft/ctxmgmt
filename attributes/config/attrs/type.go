@@ -5,9 +5,9 @@ import (
 
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext"
-	cfgcpi "github.com/mandelsoft/datacontext/config/cpi"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	cfgcpi "github.com/mandelsoft/ctxmgmt/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (
@@ -40,7 +40,7 @@ func (a *Config) GetType() string {
 }
 
 func (a *Config) AddAttribute(attr string, value interface{}) error {
-	data, err := datacontext.DefaultAttributeScheme.Encode(attr, value, runtime.DefaultJSONEncoding)
+	data, err := ctxmgmt.DefaultAttributeScheme.Encode(attr, value, runtime.DefaultJSONEncoding)
 	if err == nil {
 		a.Attributes[attr] = data
 	}
@@ -48,7 +48,7 @@ func (a *Config) AddAttribute(attr string, value interface{}) error {
 }
 
 func (a *Config) AddRawAttribute(attr string, data []byte) error {
-	_, err := datacontext.DefaultAttributeScheme.Decode(attr, data, runtime.DefaultJSONEncoding)
+	_, err := ctxmgmt.DefaultAttributeScheme.Decode(attr, data, runtime.DefaultJSONEncoding)
 	if err == nil {
 		a.Attributes[attr] = data
 	}
@@ -65,7 +65,7 @@ func (a *Config) ApplyTo(ctx cfgcpi.Context, target interface{}) error {
 		return nil
 	}
 	for a, e := range a.Attributes {
-		eff := datacontext.DefaultAttributeScheme.Shortcuts()[a]
+		eff := ctxmgmt.DefaultAttributeScheme.Shortcuts()[a]
 		if eff != "" {
 			a = eff
 		}

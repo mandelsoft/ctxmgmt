@@ -3,17 +3,17 @@ package memory
 import (
 	"sync"
 
-	"github.com/mandelsoft/datacontext"
+	"github.com/mandelsoft/ctxmgmt"
 )
 
-const ATTR_REPOS = "github.com/mandelsoft/datacontext/credentials/extensions/repositories/memory"
+const ATTR_REPOS = "github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/memory"
 
 type Repositories struct {
 	lock  sync.Mutex
 	repos map[string]*Repository
 }
 
-func newRepositories(datacontext.Context) interface{} {
+func newRepositories(ctxmgmt.Context) interface{} {
 	return &Repositories{
 		repos: map[string]*Repository{},
 	}

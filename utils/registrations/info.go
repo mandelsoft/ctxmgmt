@@ -6,7 +6,7 @@ import (
 
 	"github.com/mandelsoft/goutils/general"
 
-	"github.com/mandelsoft/datacontext/utils/listformat"
+	"github.com/mandelsoft/ctxmgmt/utils/listformat"
 )
 
 type HandlerInfos []HandlerInfo

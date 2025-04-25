@@ -9,8 +9,8 @@ import (
 	"github.com/mandelsoft/goutils/generics"
 	"github.com/texttheater/golang-levenshtein/levenshtein"
 
-	"github.com/mandelsoft/datacontext/attrs/rootcertsattr"
-	"github.com/mandelsoft/datacontext/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt/attrs/rootcertsattr"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
 )
 
 func GetProvidedConsumerId(obj interface{}, uctx ...UsageContext) ConsumerIdentity {

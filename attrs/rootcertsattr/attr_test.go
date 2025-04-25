@@ -6,9 +6,9 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext"
-	me "github.com/mandelsoft/datacontext/attrs/rootcertsattr"
-	"github.com/mandelsoft/datacontext/config"
+	"github.com/mandelsoft/ctxmgmt"
+	me "github.com/mandelsoft/ctxmgmt/attrs/rootcertsattr"
+	"github.com/mandelsoft/ctxmgmt/config"
 )
 
 const NAME = "test"
@@ -40,7 +40,7 @@ var _ = Describe("attribute", func() {
 	var ctx me.Context
 
 	BeforeEach(func() {
-		cfgctx = config.New(datacontext.MODE_DEFAULTED)
+		cfgctx = config.New(ctxmgmt.MODE_DEFAULTED)
 		ctx = cfgctx.AttributesContext()
 	})
 

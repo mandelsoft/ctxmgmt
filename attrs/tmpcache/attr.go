@@ -8,9 +8,9 @@ import (
 	"github.com/mandelsoft/vfs/pkg/osfs"
 	"github.com/mandelsoft/vfs/pkg/vfs"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/attrs/vfsattr"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/attrs/vfsattr"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (
@@ -19,7 +19,7 @@ const (
 )
 
 func init() {
-	datacontext.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
+	ctxmgmt.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
 }
 
 type AttributeType struct{}
@@ -84,7 +84,7 @@ func (a *Attribute) CreateTempFile(pat string) (vfs.File, error) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-func Get(ctx datacontext.Context) *Attribute {
+func Get(ctx ctxmgmt.Context) *Attribute {
 	var v interface{}
 	var fs vfs.FileSystem
 
@@ -103,6 +103,6 @@ func Get(ctx datacontext.Context) *Attribute {
 	return New("", fs)
 }
 
-func Set(ctx datacontext.Context, a *Attribute) {
+func Set(ctx ctxmgmt.Context, a *Attribute) {
 	ctx.GetAttributes().SetAttribute(ATTR_KEY, a)
 }

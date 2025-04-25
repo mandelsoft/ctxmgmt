@@ -6,9 +6,9 @@ import (
 	"github.com/mandelsoft/vfs/pkg/osfs"
 	"github.com/mandelsoft/vfs/pkg/vfs"
 
-	"github.com/mandelsoft/datacontext/config"
-	"github.com/mandelsoft/datacontext/config/defaultconfigregistry"
-	credcfg "github.com/mandelsoft/datacontext/credentials/config"
+	"github.com/mandelsoft/ctxmgmt/config"
+	"github.com/mandelsoft/ctxmgmt/config/defaultconfigregistry"
+	credcfg "github.com/mandelsoft/ctxmgmt/credentials/config"
 )
 
 func init() {

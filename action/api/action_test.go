@@ -1,9 +1,9 @@
 package api_test
 
 import (
-	"github.com/mandelsoft/datacontext/action/api"
-	common "github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/action/api"
+	common "github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const NAME = "testAction"

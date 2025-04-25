@@ -4,13 +4,13 @@ import (
 	"encoding/json"
 	"reflect"
 
-	"github.com/mandelsoft/datacontext/attributes"
+	"github.com/mandelsoft/ctxmgmt/attributes"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext/config"
+	"github.com/mandelsoft/ctxmgmt/config"
 )
 
 var _ = Describe("config handling", func() {

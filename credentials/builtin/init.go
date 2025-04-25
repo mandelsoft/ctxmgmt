@@ -1,5 +1,5 @@
 package builtin
 
 import (
-	_ "github.com/mandelsoft/datacontext/credentials/builtin/github"
+	_ "github.com/mandelsoft/ctxmgmt/credentials/builtin/github"
 )

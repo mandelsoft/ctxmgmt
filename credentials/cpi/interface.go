@@ -3,9 +3,9 @@ package cpi
 // This is the Context Provider Interface for credential providers
 
 import (
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/credentials/internal"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 const (
@@ -51,7 +51,7 @@ func FromProvider(p ContextProvider) Context {
 	return internal.FromProvider(p)
 }
 
-func New(m ...datacontext.BuilderMode) Context {
+func New(m ...ctxmgmt.BuilderMode) Context {
 	return internal.Builder{}.New(m...)
 }
 

@@ -9,7 +9,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/utils/refmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt"
 )
 
 // Objectbase is the base interface for the

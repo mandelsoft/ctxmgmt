@@ -1,7 +1,7 @@
 package credentials
 
 import (
-	"github.com/mandelsoft/datacontext/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
 )
 
 const (

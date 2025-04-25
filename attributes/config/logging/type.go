@@ -1,15 +1,15 @@
 package logging
 
 import (
-	"github.com/mandelsoft/datacontext/attributes"
-	logdata "github.com/mandelsoft/datacontext/utils/cobrautils/logopts/logging"
+	"github.com/mandelsoft/ctxmgmt/attributes"
+	logdata "github.com/mandelsoft/ctxmgmt/utils/cobrautils/logopts/logging"
 	"github.com/mandelsoft/logging"
 	logcfg "github.com/mandelsoft/logging/config"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/config/cpi"
-	local "github.com/mandelsoft/datacontext/logging"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/config/cpi"
+	local "github.com/mandelsoft/ctxmgmt/logging"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (
@@ -104,7 +104,7 @@ func (c *Config) ApplyTo(ctx cpi.Context, target interface{}) error {
 
 	// configure dedicated context types.
 	default:
-		dc, ok := target.(datacontext.Context)
+		dc, ok := target.(ctxmgmt.Context)
 		if !ok {
 			return cpi.ErrNoContext("data context")
 		}

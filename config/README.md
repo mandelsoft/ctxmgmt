@@ -5,9 +5,9 @@ The `config` context provides a generic configuration feature for data contexts
 ```go
 
 type Context interface {
-    datacontext.Context
+    ctxmgmt.Context
 
-    AttributesContext() datacontext.AttributesContext
+    AttributesContext() ctxmgmt.AttributesContext
 
     // Info provides the context for nested configuration evaluation
     Info() string
@@ -76,14 +76,14 @@ that can be created for a data context.
 It can be set by the context constructor:
 
 ```go
-func newContext(shared datacontext.AttributesContext, configctx config.Context, reposcheme RepositoryTypeScheme, logger logging.Context) Context {
+func newContext(shared ctxmgmt.AttributesContext, configctx config.Context, reposcheme RepositoryTypeScheme, logger logging.Context) Context {
     c := &_context{
         sharedattributes:     shared,
         updater:              cfgcpi.NewUpdate(configctx),
         knownRepositoryTypes: reposcheme,
         ...
     }
-    c.Context = datacontext.NewContextBase(c, CONTEXT_TYPE, key, shared.GetAttributes(), logger)
+    c.Context = ctxmgmt.NewContextBase(c, CONTEXT_TYPE, key, shared.GetAttributes(), logger)
     return c
 }
 ```

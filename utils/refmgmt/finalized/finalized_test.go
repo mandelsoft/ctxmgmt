@@ -7,9 +7,9 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/utils/refmgmt"
-	"github.com/mandelsoft/datacontext/utils/refmgmt/finalized"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt/finalized"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 type Interface interface {

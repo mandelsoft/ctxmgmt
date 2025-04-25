@@ -13,15 +13,15 @@ import (
 	"github.com/mandelsoft/goutils/general"
 	"sigs.k8s.io/yaml"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/config"
-	local "github.com/mandelsoft/datacontext/config/extensions/config"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/config"
+	local "github.com/mandelsoft/ctxmgmt/config/extensions/config"
 )
 
 func CheckRefs(ctx config.Context, n int) {
 	runtime.GC()
 	time.Sleep(time.Second)
-	Expect(datacontext.GetContextRefCount(ctx)).To(Equal(n)) // all temp refs have been finalized
+	Expect(ctxmgmt.GetContextRefCount(ctx)).To(Equal(n)) // all temp refs have been finalized
 }
 
 var _ = Describe("generic config handling", func() {
@@ -172,7 +172,7 @@ var _ = Describe("generic config handling", func() {
 		Expect(target.used).NotTo(BeNil())
 		Expect(target.used.GetId()).To(Equal(cfgctx.GetId()))
 
-		CheckRefs(cfgctx, general.Conditional(datacontext.MULTI_REF, 2, 1)) // config context stored in target with separate ref
+		CheckRefs(cfgctx, general.Conditional(ctxmgmt.MULTI_REF, 2, 1)) // config context stored in target with separate ref
 		target.used.GetId()
 	})
 })

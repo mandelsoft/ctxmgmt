@@ -1,16 +1,16 @@
 package api_test
 
 import (
-	"github.com/mandelsoft/datacontext/attributes"
+	"github.com/mandelsoft/ctxmgmt/attributes"
 	. "github.com/mandelsoft/goutils/testutils"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/action/api"
-	"github.com/mandelsoft/datacontext/action/handlers"
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/action/api"
+	"github.com/mandelsoft/ctxmgmt/action/handlers"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 type Handler struct {
@@ -77,7 +77,7 @@ var _ = Describe("action registry", func() {
 	})
 
 	Context("data context", func() {
-		var ctx datacontext.Context
+		var ctx ctxmgmt.Context
 		var handler *Handler
 
 		BeforeEach(func() {

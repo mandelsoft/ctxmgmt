@@ -1,9 +1,9 @@
 package config_test
 
 import (
-	"github.com/mandelsoft/datacontext/config"
-	"github.com/mandelsoft/datacontext/config/cpi"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/config"
+	"github.com/mandelsoft/ctxmgmt/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (

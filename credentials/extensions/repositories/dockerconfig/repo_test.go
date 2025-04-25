@@ -11,13 +11,13 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/credentials"
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	local "github.com/mandelsoft/datacontext/credentials/extensions/repositories/dockerconfig"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/oci"
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	local "github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/dockerconfig"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/oci"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 var _ = Describe("docker config", func() {
@@ -161,7 +161,7 @@ var _ = Describe("docker config", func() {
 			ctx.GetType()
 			Expect(r.Get()).To(BeNil())
 
-			Expect(datacontext.GetContextRefCount(ctx)).To(Equal(1))
+			Expect(ctxmgmt.GetContextRefCount(ctx)).To(Equal(1))
 			ctx = nil
 			runtime.GC()
 			time.Sleep(time.Second)

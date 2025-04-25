@@ -1,11 +1,11 @@
 package vault
 
 import (
-	"github.com/mandelsoft/datacontext/credentials/identity/vault"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/vault"
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
 )
 
 type Repository struct {

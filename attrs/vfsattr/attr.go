@@ -7,8 +7,8 @@ import (
 	"github.com/mandelsoft/vfs/pkg/osfs"
 	"github.com/mandelsoft/vfs/pkg/vfs"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (
@@ -17,7 +17,7 @@ const (
 )
 
 func init() {
-	datacontext.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
+	ctxmgmt.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
 }
 
 type AttributeType struct{}
@@ -48,7 +48,7 @@ func (a AttributeType) Decode(data []byte, unmarshaller runtime.Unmarshaler) (in
 
 var _osfs = osfs.New()
 
-func Get(ctx datacontext.Context) vfs.FileSystem {
+func Get(ctx ctxmgmt.Context) vfs.FileSystem {
 	v := ctx.GetAttributes().GetAttribute(ATTR_KEY)
 	if v == nil {
 		return _osfs
@@ -57,6 +57,6 @@ func Get(ctx datacontext.Context) vfs.FileSystem {
 	return fs
 }
 
-func Set(ctx datacontext.Context, fs vfs.FileSystem) {
+func Set(ctx ctxmgmt.Context, fs vfs.FileSystem) {
 	ctx.GetAttributes().SetAttribute(ATTR_KEY, fs)
 }

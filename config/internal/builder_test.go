@@ -1,17 +1,17 @@
 package internal_test
 
 import (
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/attributes"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/attributes"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	local "github.com/mandelsoft/datacontext/config/internal"
+	local "github.com/mandelsoft/ctxmgmt/config/internal"
 )
 
 var _ = Describe("builder test", func() {
 	It("creates local", func() {
-		ctx := local.Builder{}.New(datacontext.MODE_SHARED)
+		ctx := local.Builder{}.New(ctxmgmt.MODE_SHARED)
 
 		Expect(ctx.AttributesContext()).To(BeIdenticalTo(attributes.DefaultContext))
 		Expect(ctx).NotTo(BeIdenticalTo(local.DefaultContext))
@@ -19,7 +19,7 @@ var _ = Describe("builder test", func() {
 	})
 
 	It("creates configured", func() {
-		ctx := local.Builder{}.New(datacontext.MODE_CONFIGURED)
+		ctx := local.Builder{}.New(ctxmgmt.MODE_CONFIGURED)
 
 		Expect(ctx.AttributesContext()).NotTo(BeIdenticalTo(attributes.DefaultContext))
 		Expect(ctx).NotTo(BeIdenticalTo(local.DefaultContext))
@@ -28,7 +28,7 @@ var _ = Describe("builder test", func() {
 	})
 
 	It("creates iniial", func() {
-		ctx := local.Builder{}.New(datacontext.MODE_INITIAL)
+		ctx := local.Builder{}.New(ctxmgmt.MODE_INITIAL)
 
 		Expect(ctx.AttributesContext()).NotTo(BeIdenticalTo(attributes.DefaultContext))
 		Expect(ctx).NotTo(BeIdenticalTo(local.DefaultContext))

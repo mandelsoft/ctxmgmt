@@ -1,4 +1,4 @@
-package datacontext_test
+package ctxmgmt_test
 
 import (
 	"testing"

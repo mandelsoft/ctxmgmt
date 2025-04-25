@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/utils/refmgmt/resource"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt/resource"
 )
 
 // Resource is the intended resource interface.

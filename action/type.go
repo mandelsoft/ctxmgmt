@@ -1,7 +1,7 @@
 package action
 
 import (
-	"github.com/mandelsoft/datacontext/action/api"
+	"github.com/mandelsoft/ctxmgmt/action/api"
 )
 
 const KIND_ACTION = api.KIND_ACTION

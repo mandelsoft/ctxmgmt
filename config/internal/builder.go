@@ -3,8 +3,8 @@ package internal
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/attributes"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/attributes"
 )
 
 type Builder struct {
@@ -40,12 +40,12 @@ func (b Builder) Bound() (Context, context.Context) {
 	return c, context.WithValue(b.getContext(), key, c)
 }
 
-func (b Builder) New(m ...datacontext.BuilderMode) Context {
-	mode := datacontext.Mode(m...)
+func (b Builder) New(m ...ctxmgmt.BuilderMode) Context {
+	mode := ctxmgmt.Mode(m...)
 	ctx := b.getContext()
 
 	if b.shared == nil {
-		if mode == datacontext.MODE_SHARED {
+		if mode == ctxmgmt.MODE_SHARED {
 			b.shared = attributes.ForContext(ctx)
 		} else {
 			b.shared = attributes.New(nil)
@@ -53,18 +53,18 @@ func (b Builder) New(m ...datacontext.BuilderMode) Context {
 	}
 	if b.reposcheme == nil {
 		switch mode {
-		case datacontext.MODE_INITIAL:
+		case ctxmgmt.MODE_INITIAL:
 			b.reposcheme = NewConfigTypeScheme(nil)
-		case datacontext.MODE_CONFIGURED:
+		case ctxmgmt.MODE_CONFIGURED:
 			b.reposcheme = NewConfigTypeScheme(nil)
 			b.reposcheme.AddKnownTypes(DefaultConfigTypeScheme)
-		case datacontext.MODE_EXTENDED:
+		case ctxmgmt.MODE_EXTENDED:
 			b.reposcheme = NewConfigTypeScheme(nil, DefaultConfigTypeScheme)
-		case datacontext.MODE_DEFAULTED:
+		case ctxmgmt.MODE_DEFAULTED:
 			fallthrough
-		case datacontext.MODE_SHARED:
+		case ctxmgmt.MODE_SHARED:
 			b.reposcheme = DefaultConfigTypeScheme
 		}
 	}
-	return datacontext.SetupContext(mode, newContext(b.shared, b.reposcheme, b.shared))
+	return ctxmgmt.SetupContext(mode, newContext(b.shared, b.reposcheme, b.shared))
 }

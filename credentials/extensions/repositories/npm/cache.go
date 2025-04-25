@@ -1,15 +1,15 @@
 package npm
 
 import (
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
 )
 
 type Cache struct {
 	repos map[string]*Repository
 }
 
-func createCache(_ datacontext.Context) interface{} {
+func createCache(_ ctxmgmt.Context) interface{} {
 	return &Cache{
 		repos: map[string]*Repository{},
 	}

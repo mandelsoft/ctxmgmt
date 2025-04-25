@@ -3,8 +3,8 @@ package internal
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/config"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/config"
 )
 
 type Builder struct {
@@ -46,34 +46,34 @@ func (b Builder) Bound() (Context, context.Context) {
 	return c, context.WithValue(b.getContext(), key, c)
 }
 
-func (b Builder) New(m ...datacontext.BuilderMode) Context {
-	mode := datacontext.Mode(m...)
+func (b Builder) New(m ...ctxmgmt.BuilderMode) Context {
+	mode := ctxmgmt.Mode(m...)
 	ctx := b.getContext()
 
 	if b.config == nil {
 		var ok bool
 		b.config, ok = config.DefinedForContext(ctx)
-		if !ok && mode != datacontext.MODE_SHARED {
+		if !ok && mode != ctxmgmt.MODE_SHARED {
 			b.config = config.New(mode)
 		}
 	}
 	if b.reposcheme == nil {
 		switch mode {
-		case datacontext.MODE_INITIAL:
+		case ctxmgmt.MODE_INITIAL:
 			b.reposcheme = NewRepositoryTypeScheme(nil)
-		case datacontext.MODE_CONFIGURED:
+		case ctxmgmt.MODE_CONFIGURED:
 			b.reposcheme = NewRepositoryTypeScheme(nil)
 			b.reposcheme.AddKnownTypes(DefaultRepositoryTypeScheme)
-		case datacontext.MODE_EXTENDED:
+		case ctxmgmt.MODE_EXTENDED:
 			b.reposcheme = NewRepositoryTypeScheme(nil, DefaultRepositoryTypeScheme)
-		case datacontext.MODE_DEFAULTED:
+		case ctxmgmt.MODE_DEFAULTED:
 			fallthrough
-		case datacontext.MODE_SHARED:
+		case ctxmgmt.MODE_SHARED:
 			b.reposcheme = DefaultRepositoryTypeScheme
 		}
 	}
 	if b.matchers == nil {
 		b.matchers = StandardIdentityMatchers
 	}
-	return datacontext.SetupContext(mode, newContext(b.config, b.reposcheme, b.matchers, b.config))
+	return ctxmgmt.SetupContext(mode, newContext(b.config, b.reposcheme, b.matchers, b.config))
 }

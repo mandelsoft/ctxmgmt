@@ -10,7 +10,7 @@ import (
 	"github.com/modern-go/reflect2"
 	"github.com/sirupsen/logrus"
 
-	"github.com/mandelsoft/datacontext/utils/errkind"
+	"github.com/mandelsoft/ctxmgmt/utils/errkind"
 )
 
 const ATTR_TYPE = "type"

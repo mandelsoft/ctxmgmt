@@ -5,8 +5,8 @@ import (
 
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext/config/cpi"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (

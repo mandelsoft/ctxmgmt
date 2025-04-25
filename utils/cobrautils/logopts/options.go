@@ -1,8 +1,8 @@
 package logopts
 
 import (
-	"github.com/mandelsoft/datacontext"
-	loggingopt "github.com/mandelsoft/datacontext/utils/cobrautils/logopts/logging"
+	"github.com/mandelsoft/ctxmgmt"
+	loggingopt "github.com/mandelsoft/ctxmgmt/utils/cobrautils/logopts/logging"
 	"github.com/mandelsoft/logging"
 	"github.com/mandelsoft/logging/config"
 	"github.com/spf13/pflag"
@@ -61,7 +61,7 @@ func (o *Options) Close() error {
 	return o.EvaluatedOptions.Close()
 }
 
-func (o *Options) Configure(ctx datacontext.Context, logctx logging.Context) error {
+func (o *Options) Configure(ctx ctxmgmt.Context, logctx logging.Context) error {
 	var err error
 
 	o.EvaluatedOptions, err = o.ConfigFragment.Evaluate(ctx, logctx, true)

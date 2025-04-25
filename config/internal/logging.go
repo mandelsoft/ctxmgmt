@@ -1,7 +1,7 @@
 package internal
 
 import (
-	datalog "github.com/mandelsoft/datacontext/logging"
+	datalog "github.com/mandelsoft/ctxmgmt/logging"
 )
 
 var Realm = datalog.DefineSubRealm("configuration management", "config")

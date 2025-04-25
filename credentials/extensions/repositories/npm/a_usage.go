@@ -1,7 +1,7 @@
 package npm
 
 import (
-	"github.com/mandelsoft/datacontext/utils/listformat"
+	"github.com/mandelsoft/ctxmgmt/utils/listformat"
 )
 
 var usage = `

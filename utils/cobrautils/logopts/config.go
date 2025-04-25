@@ -3,8 +3,8 @@ package logopts
 import (
 	"strings"
 
-	"github.com/mandelsoft/datacontext"
-	logging2 "github.com/mandelsoft/datacontext/utils/cobrautils/logopts/logging"
+	"github.com/mandelsoft/ctxmgmt"
+	logging2 "github.com/mandelsoft/ctxmgmt/utils/cobrautils/logopts/logging"
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/general"
 	"github.com/mandelsoft/goutils/optionutils"
@@ -17,8 +17,8 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"
 
-	"github.com/mandelsoft/datacontext/attrs/logforward"
-	"github.com/mandelsoft/datacontext/attrs/vfsattr"
+	"github.com/mandelsoft/ctxmgmt/attrs/logforward"
+	"github.com/mandelsoft/ctxmgmt/attrs/vfsattr"
 )
 
 // ConfigFragment is a serializable log config used
@@ -103,7 +103,7 @@ func (c *ConfigFragment) GetLogConfig(fss ...vfs.FileSystem) (*config.Config, er
 	return cfg, nil
 }
 
-func (c *ConfigFragment) Evaluate(ctx datacontext.Context, logctx logging.Context, main bool) (*EvaluatedOptions, error) {
+func (c *ConfigFragment) Evaluate(ctx ctxmgmt.Context, logctx logging.Context, main bool) (*EvaluatedOptions, error) {
 	var err error
 	var opts EvaluatedOptions
 

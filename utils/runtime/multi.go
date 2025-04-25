@@ -9,7 +9,7 @@ import (
 	"github.com/mandelsoft/goutils/maputils"
 	"github.com/mandelsoft/goutils/set"
 
-	"github.com/mandelsoft/datacontext/utils/errkind"
+	"github.com/mandelsoft/ctxmgmt/utils/errkind"
 )
 
 type multiFormatVersion[T VersionedTypedObject] struct {

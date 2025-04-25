@@ -8,7 +8,7 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	cfgctx "github.com/mandelsoft/datacontext/config"
+	cfgctx "github.com/mandelsoft/ctxmgmt/config"
 	"github.com/mandelsoft/logging"
 	"github.com/mandelsoft/logging/config"
 	"sigs.k8s.io/yaml"

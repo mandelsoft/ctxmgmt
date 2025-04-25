@@ -7,9 +7,9 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/credentials"
-	"github.com/mandelsoft/datacontext/credentials/extensions/repositories/directcreds"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	"github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/directcreds"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 var DefaultContext = credentials.New()

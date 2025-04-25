@@ -6,11 +6,11 @@ import (
 
 	"github.com/hashicorp/vault-client-go"
 	"github.com/hashicorp/vault-client-go/schema"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/vault"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/vault"
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/maputils"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
 )
 
 type AuthMethod interface {

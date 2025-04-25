@@ -9,7 +9,7 @@ import (
 	"github.com/mandelsoft/goutils/stringutils"
 	"github.com/modern-go/reflect2"
 
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 type ConfigType interface {

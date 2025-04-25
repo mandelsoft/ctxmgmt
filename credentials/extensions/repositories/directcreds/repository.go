@@ -3,7 +3,7 @@ package directcreds
 import (
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
 )
 
 type Repository struct {

@@ -6,7 +6,7 @@ import (
 
 	"github.com/modern-go/reflect2"
 
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 // CredentialsSpec describes a dedicated credential provided by some repository.

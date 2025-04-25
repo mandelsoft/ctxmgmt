@@ -7,8 +7,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	me "github.com/mandelsoft/datacontext/config"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	me "github.com/mandelsoft/ctxmgmt/config"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 var _ = Describe("area test", func() {

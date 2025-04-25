@@ -1,7 +1,7 @@
-package datacontext_test
+package ctxmgmt_test
 
 import (
-	me "github.com/mandelsoft/datacontext/attributes"
+	me "github.com/mandelsoft/ctxmgmt/attributes"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 )

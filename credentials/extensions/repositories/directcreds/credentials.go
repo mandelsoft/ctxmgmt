@@ -1,8 +1,8 @@
 package directcreds
 
 import (
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 func NewCredentials(props utils.Properties) cpi.CredentialsSpec {

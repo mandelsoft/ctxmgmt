@@ -4,8 +4,8 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/credentials"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/oci"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/oci"
 )
 
 var _ = Describe("ctf management", func() {

@@ -1,13 +1,13 @@
-package datacontext
+package ctxmgmt
 
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext/action/handlers"
-	ctxlog "github.com/mandelsoft/datacontext/logging"
-	"github.com/mandelsoft/datacontext/utils/refmgmt"
-	"github.com/mandelsoft/datacontext/utils/runtime"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt/action/handlers"
+	ctxlog "github.com/mandelsoft/ctxmgmt/logging"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 	"github.com/mandelsoft/goutils/finalizer"
 )
 

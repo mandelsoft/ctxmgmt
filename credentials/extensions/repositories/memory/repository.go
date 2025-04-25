@@ -3,7 +3,7 @@ package memory
 import (
 	"sync"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
 )
 
 type Repository struct {

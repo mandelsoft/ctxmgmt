@@ -3,8 +3,8 @@ package logging_test
 import (
 	"bytes"
 
-	"github.com/mandelsoft/datacontext/attributes"
-	. "github.com/mandelsoft/datacontext/logging/testhelper"
+	"github.com/mandelsoft/ctxmgmt/attributes"
+	. "github.com/mandelsoft/ctxmgmt/logging/testhelper"
 	. "github.com/mandelsoft/goutils/testutils"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
@@ -13,9 +13,9 @@ import (
 	"github.com/mandelsoft/logging"
 	"github.com/tonglil/buflogr"
 
-	logcfg "github.com/mandelsoft/datacontext/attributes/config/logging"
-	"github.com/mandelsoft/datacontext/config"
-	ctxlog "github.com/mandelsoft/datacontext/logging"
+	logcfg "github.com/mandelsoft/ctxmgmt/attributes/config/logging"
+	"github.com/mandelsoft/ctxmgmt/config"
+	ctxlog "github.com/mandelsoft/ctxmgmt/logging"
 )
 
 var _ = Describe("logging configuration", func() {

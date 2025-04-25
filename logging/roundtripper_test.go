@@ -12,7 +12,7 @@ import (
 	logcfg "github.com/mandelsoft/logging/config"
 	"github.com/tonglil/buflogr"
 
-	local "github.com/mandelsoft/datacontext/logging"
+	local "github.com/mandelsoft/ctxmgmt/logging"
 )
 
 var _ = Describe("RoundTripper", func() {

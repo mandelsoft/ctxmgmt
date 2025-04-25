@@ -7,8 +7,8 @@ import (
 
 	"sigs.k8s.io/yaml"
 
-	"github.com/mandelsoft/datacontext/credentials/identity/hostpath"
-	"github.com/mandelsoft/datacontext/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/hostpath"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
 )
 
 var _ = Describe("unmarshal cunsomer identity", func() {

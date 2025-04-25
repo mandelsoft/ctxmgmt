@@ -1,7 +1,7 @@
 package config
 
 import (
-	cfgcpi "github.com/mandelsoft/datacontext/config/cpi"
+	cfgcpi "github.com/mandelsoft/ctxmgmt/config/cpi"
 )
 
 // GetConfigured applies config objects of a config context

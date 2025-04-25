@@ -5,9 +5,9 @@ import (
 
 	"github.com/mandelsoft/goutils/errors"
 
-	cfgcpi "github.com/mandelsoft/datacontext/config/cpi"
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	cfgcpi "github.com/mandelsoft/ctxmgmt/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (

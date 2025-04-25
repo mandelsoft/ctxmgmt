@@ -6,9 +6,9 @@ import (
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/general"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	npmCredentials "github.com/mandelsoft/datacontext/credentials/identity/npm"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	npmCredentials "github.com/mandelsoft/ctxmgmt/credentials/identity/npm"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 const PROVIDER = "mandelsoft.de/credentialprovider/" + Type

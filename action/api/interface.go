@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 type Action interface {

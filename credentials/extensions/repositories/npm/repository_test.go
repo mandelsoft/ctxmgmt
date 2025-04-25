@@ -8,12 +8,12 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/credentials"
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	local "github.com/mandelsoft/datacontext/credentials/extensions/repositories/npm"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/npm"
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	local "github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/npm"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/npm"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 var _ = Describe("NPM config - .npmrc", func() {

@@ -1,7 +1,7 @@
-package datacontext
+package ctxmgmt
 
 import (
-	"github.com/mandelsoft/datacontext/logging"
+	"github.com/mandelsoft/ctxmgmt/logging"
 )
 
 var Realm = logging.DefineSubRealm("context lifecycle", "context")

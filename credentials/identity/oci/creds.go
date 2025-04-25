@@ -3,7 +3,7 @@ package oci
 import (
 	"path"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
 )
 
 func SimpleCredentials(user, passwd string) cpi.Credentials {

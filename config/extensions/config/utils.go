@@ -1,7 +1,7 @@
 package config
 
 import (
-	"github.com/mandelsoft/datacontext/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/config/cpi"
 )
 
 type Aggregator struct {

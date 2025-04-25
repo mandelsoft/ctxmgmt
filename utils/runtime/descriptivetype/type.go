@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 	"github.com/mandelsoft/goutils/general"
 	"github.com/mandelsoft/goutils/maputils"
 	"github.com/mandelsoft/goutils/stringutils"

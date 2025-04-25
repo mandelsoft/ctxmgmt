@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"reflect"
 
-	"github.com/mandelsoft/datacontext/credentials/identity/vault"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/vault"
 	. "github.com/mandelsoft/goutils/testutils"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext/credentials"
-	me "github.com/mandelsoft/datacontext/credentials/extensions/repositories/vault"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	me "github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/vault"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 const (

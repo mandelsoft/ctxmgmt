@@ -3,8 +3,8 @@ package aliases
 import (
 	"fmt"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (

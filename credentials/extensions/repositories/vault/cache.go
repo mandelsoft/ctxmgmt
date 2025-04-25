@@ -5,18 +5,18 @@ import (
 
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
 )
 
-const ATTR_REPOS = "github.com/mandelsoft/datacontext/credentials/extensions/repositories/vault"
+const ATTR_REPOS = "github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/vault"
 
 type Repositories struct {
 	lock  sync.Mutex
 	repos map[cpi.ProviderIdentity]*Repository
 }
 
-func newRepositories(datacontext.Context) interface{} {
+func newRepositories(ctxmgmt.Context) interface{} {
 	return &Repositories{
 		repos: map[cpi.ProviderIdentity]*Repository{},
 	}

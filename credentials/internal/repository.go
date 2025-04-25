@@ -3,7 +3,7 @@ package internal
 import (
 	"github.com/mandelsoft/goutils/set"
 
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 type Repository interface {

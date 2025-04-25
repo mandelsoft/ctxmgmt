@@ -1,4 +1,4 @@
-package datacontext
+package ctxmgmt
 
 import (
 	"context"
@@ -9,10 +9,10 @@ import (
 	"github.com/mandelsoft/logging"
 	"github.com/modern-go/reflect2"
 
-	"github.com/mandelsoft/datacontext/action/handlers"
-	"github.com/mandelsoft/datacontext/utils/refmgmt"
-	"github.com/mandelsoft/datacontext/utils/refmgmt/finalized"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt/action/handlers"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt/finalized"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 var contextrange, attrsrange = runtimefinalizer.NumberRange{}, runtimefinalizer.NumberRange{}

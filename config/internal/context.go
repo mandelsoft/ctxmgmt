@@ -4,17 +4,17 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/mandelsoft/datacontext/attributes"
+	"github.com/mandelsoft/ctxmgmt/attributes"
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/general"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 // CONFIG_TYPE_SUFFIX is the standard suffix used for configuration
 // types provided by this library.
-const CONFIG_TYPE_SUFFIX = ".config" + datacontext.TYPE_GROUP_SUFFIX
+const CONFIG_TYPE_SUFFIX = ".config" + ctxmgmt.TYPE_GROUP_SUFFIX
 
 type ConfigSelector interface {
 	Select(Config) bool
@@ -27,14 +27,14 @@ var AllConfigs = AppliedConfigSelectorFunction(func(*AppliedConfig) bool { retur
 
 const AllGenerations int64 = 0
 
-const CONTEXT_TYPE = "config" + datacontext.CONTEXT_SUFFIX
+const CONTEXT_TYPE = "config" + ctxmgmt.CONTEXT_SUFFIX
 
 type ContextProvider interface {
 	ConfigContext() Context
 }
 
 type Context interface {
-	datacontext.Context
+	ctxmgmt.Context
 	ContextProvider
 
 	AttributesContext() attributes.AttributesContext
@@ -92,18 +92,20 @@ type Context interface {
 	// The generation of the last applied object is returned to be used as
 	// new watermark.
 	ApplyTo(gen int64, target interface{}) (int64, error)
+
+	ApplyAllTo(target interface{}) error
 }
 
 var key = reflect.TypeOf(_context{})
 
 // DefaultContext is the default context initialized by init functions.
-var DefaultContext = Builder{}.New(datacontext.MODE_SHARED)
+var DefaultContext = Builder{}.New(ctxmgmt.MODE_SHARED)
 
 // FromContext returns the Context to use for context.Context.
 // This is either an explicit context or the default context.
 // The returned context incorporates the given context.
 func FromContext(ctx context.Context) Context {
-	c, _ := datacontext.ForContextByKey(ctx, key, DefaultContext)
+	c, _ := ctxmgmt.ForContextByKey(ctx, key, DefaultContext)
 	return c.(Context)
 }
 
@@ -115,7 +117,7 @@ func FromProvider(p ContextProvider) Context {
 }
 
 func DefinedForContext(ctx context.Context) (Context, bool) {
-	c, ok := datacontext.ForContextByKey(ctx, key, DefaultContext)
+	c, ok := ctxmgmt.ForContextByKey(ctx, key, DefaultContext)
 	if c != nil {
 		return c.(Context), ok
 	}
@@ -124,7 +126,7 @@ func DefinedForContext(ctx context.Context) (Context, bool) {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-type _InternalContext = datacontext.InternalContext
+type _InternalContext = ctxmgmt.InternalContext
 
 type coreContext struct {
 	_InternalContext
@@ -144,21 +146,21 @@ type _context struct {
 }
 
 var (
-	_ Context                          = (*_context)(nil)
-	_ datacontext.ViewCreator[Context] = (*_context)(nil)
+	_ Context                      = (*_context)(nil)
+	_ ctxmgmt.ViewCreator[Context] = (*_context)(nil)
 )
 
 // gcWrapper is used as garbage collectable
 // wrapper for a context implementation
 // to establish a runtime finalizer.
 type gcWrapper struct {
-	datacontext.GCWrapper
+	ctxmgmt.GCWrapper
 	*_context
 }
 
 func newView(c *_context, ref ...bool) Context {
 	if general.Optional(ref...) {
-		return datacontext.FinalizedContext[gcWrapper](c)
+		return ctxmgmt.FinalizedContext[gcWrapper](c)
 	}
 	return c
 }
@@ -167,7 +169,7 @@ func (w *gcWrapper) SetContext(c *_context) {
 	w._context = c
 }
 
-func newContext(shared attributes.AttributesContext, reposcheme ConfigTypeScheme, delegates datacontext.Delegates) Context {
+func newContext(shared attributes.AttributesContext, reposcheme ConfigTypeScheme, delegates ctxmgmt.Delegates) Context {
 	c := &_context{
 		coreContext: &coreContext{
 			sharedAttributes: shared,
@@ -175,9 +177,9 @@ func newContext(shared attributes.AttributesContext, reposcheme ConfigTypeScheme
 			configs:          NewConfigStore(),
 		},
 	}
-	c._InternalContext = datacontext.NewContextBase(c, CONTEXT_TYPE, key, shared.GetAttributes(), delegates)
+	c._InternalContext = ctxmgmt.NewContextBase(c, CONTEXT_TYPE, key, shared.GetAttributes(), delegates)
 	c.updater = NewUpdaterForFactory(c, c.ConfigContext) // provide target as new view to internal context
-	attributes.AssureUpdater(shared, NewUpdater(c, datacontext.PersistentContextRef(shared)))
+	attributes.AssureUpdater(shared, NewUpdater(c, ctxmgmt.PersistentContextRef(shared)))
 
 	return newView(c, true)
 }
@@ -194,7 +196,7 @@ func (c *_context) Update() error {
 	return c.updater.Update()
 }
 
-var _ datacontext.Updater = (*_context)(nil)
+var _ ctxmgmt.Updater = (*_context)(nil)
 
 func (c *_context) Info() string {
 	return c.description
@@ -289,6 +291,11 @@ func (c *_context) Generation() int64 {
 
 func (c *_context) Reset() int64 {
 	return c.configs.Reset()
+}
+
+func (c *_context) ApplyAllTo(target interface{}) error {
+	_, err := c.ApplyTo(0, target)
+	return err
 }
 
 func (c *_context) ApplyTo(gen int64, target interface{}) (int64, error) {

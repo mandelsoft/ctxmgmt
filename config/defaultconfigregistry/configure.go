@@ -4,8 +4,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/mandelsoft/datacontext/config"
-	"github.com/mandelsoft/datacontext/utils/listformat"
+	"github.com/mandelsoft/ctxmgmt/config"
+	"github.com/mandelsoft/ctxmgmt/utils/listformat"
 )
 
 type DefaultConfigHandler func(cfg config.Context) (string, config.Config, error)

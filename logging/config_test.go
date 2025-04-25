@@ -3,7 +3,7 @@ package logging_test
 import (
 	"bytes"
 
-	. "github.com/mandelsoft/datacontext/logging/testhelper"
+	. "github.com/mandelsoft/ctxmgmt/logging/testhelper"
 	"github.com/mandelsoft/goutils/substutils"
 	. "github.com/mandelsoft/goutils/testutils"
 	. "github.com/onsi/ginkgo/v2"
@@ -13,7 +13,7 @@ import (
 	logcfg "github.com/mandelsoft/logging/config"
 	"github.com/tonglil/buflogr"
 
-	local "github.com/mandelsoft/datacontext/logging"
+	local "github.com/mandelsoft/ctxmgmt/logging"
 )
 
 ////////////////////////////////////////////////////////////////////////////////

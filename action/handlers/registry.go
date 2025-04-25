@@ -11,10 +11,10 @@ import (
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/general"
 
-	"github.com/mandelsoft/datacontext/action/api"
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/registrations"
-	"github.com/mandelsoft/datacontext/utils/semverutils"
+	"github.com/mandelsoft/ctxmgmt/action/api"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/registrations"
+	"github.com/mandelsoft/ctxmgmt/utils/semverutils"
 )
 
 var defaultHandlers = NewRegistry(api.DefaultRegistry())

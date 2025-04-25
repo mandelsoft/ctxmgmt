@@ -1,9 +1,9 @@
 package npm
 
 import (
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/npm"
-	"github.com/mandelsoft/datacontext/logging"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/npm"
+	"github.com/mandelsoft/ctxmgmt/logging"
 )
 
 type ConsumerProvider struct {

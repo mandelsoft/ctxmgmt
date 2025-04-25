@@ -3,9 +3,9 @@ package github
 import (
 	"os"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/github"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/github"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 func init() {

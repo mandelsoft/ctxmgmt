@@ -9,18 +9,18 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/mandelsoft/datacontext/credentials/identity/vault"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/vault"
 	. "github.com/mandelsoft/goutils/testutils"
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
 	"github.com/hashicorp/vault-client-go/schema"
 
-	"github.com/mandelsoft/datacontext/credentials"
-	me "github.com/mandelsoft/datacontext/credentials/extensions/repositories/vault"
-	"github.com/mandelsoft/datacontext/credentials/identity/hostpath"
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	me "github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/vault"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/hostpath"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 type vaultMode string

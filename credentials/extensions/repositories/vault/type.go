@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/mandelsoft/datacontext/credentials/identity/vault"
+	"github.com/mandelsoft/ctxmgmt/credentials/identity/vault"
 	"github.com/mandelsoft/goutils/optionutils"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/credentials/internal"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (

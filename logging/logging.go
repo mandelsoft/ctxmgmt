@@ -11,10 +11,10 @@ import (
 	"github.com/opencontainers/go-digest"
 )
 
-// REALM is used to tag all logging done by this library with the datacontext tag.
+// REALM is used to tag all logging done by this library with the ctxmgmt tag.
 // This is also used as message context to configure settings for all
 // log output provided by this library.
-var REALM = logging.DefineRealm("contexts", "general realm used for the datacontext library.")
+var REALM = logging.DefineRealm("contexts", "general realm used for the ctxmgmt library.")
 
 type StaticContext struct {
 	logging.Context

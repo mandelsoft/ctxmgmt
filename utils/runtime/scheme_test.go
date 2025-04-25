@@ -7,7 +7,7 @@ import (
 
 	"github.com/mandelsoft/goutils/maputils"
 
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 type TType runtime.TypedObjectDecoder[T]

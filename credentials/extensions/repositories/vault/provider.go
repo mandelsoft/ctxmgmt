@@ -11,12 +11,12 @@ import (
 	"time"
 
 	"github.com/hashicorp/vault-client-go"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/vault"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/vault"
 	"github.com/mandelsoft/goutils/errors"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/credentials/internal"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 const PROVIDER = "mandelsoft.de/credentialprovider/" + Type

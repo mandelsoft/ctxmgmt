@@ -4,8 +4,8 @@ import (
 	"github.com/docker/cli/cli/config/configfile"
 	dockercred "github.com/docker/cli/cli/config/credentials"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	identity "github.com/mandelsoft/datacontext/credentials/identity/oci"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	identity "github.com/mandelsoft/ctxmgmt/credentials/identity/oci"
 )
 
 const PROVIDER = "mandelsoft.de/credentialprovider/" + Type

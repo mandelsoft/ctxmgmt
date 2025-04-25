@@ -6,8 +6,8 @@ import (
 	"github.com/docker/cli/cli/config/types"
 	"github.com/mandelsoft/goutils/set"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/utils"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils"
 )
 
 type Credentials struct {

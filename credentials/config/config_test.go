@@ -9,14 +9,14 @@ import (
 
 	"github.com/mandelsoft/goutils/testutils"
 
-	"github.com/mandelsoft/datacontext/config"
-	"github.com/mandelsoft/datacontext/credentials"
-	localconfig "github.com/mandelsoft/datacontext/credentials/config"
-	"github.com/mandelsoft/datacontext/credentials/extensions/repositories/aliases"
-	"github.com/mandelsoft/datacontext/credentials/extensions/repositories/directcreds"
-	"github.com/mandelsoft/datacontext/credentials/extensions/repositories/memory"
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/config"
+	"github.com/mandelsoft/ctxmgmt/credentials"
+	localconfig "github.com/mandelsoft/ctxmgmt/credentials/config"
+	"github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/aliases"
+	"github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/directcreds"
+	"github.com/mandelsoft/ctxmgmt/credentials/extensions/repositories/memory"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 var DefaultContext = credentials.New()

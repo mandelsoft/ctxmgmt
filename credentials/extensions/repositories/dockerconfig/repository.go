@@ -13,10 +13,10 @@ import (
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/ioutils"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/credentials/cpi"
-	"github.com/mandelsoft/datacontext/utils"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 type Repository struct {
@@ -30,7 +30,7 @@ type Repository struct {
 
 func NewRepository(ctx cpi.Context, path string, data []byte, propagate bool) (*Repository, error) {
 	r := &Repository{
-		ctx:       datacontext.InternalContextRef(ctx),
+		ctx:       ctxmgmt.InternalContextRef(ctx),
 		propagate: propagate,
 		path:      path,
 		data:      data,

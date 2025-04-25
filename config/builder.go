@@ -3,9 +3,9 @@ package config
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/attributes"
-	"github.com/mandelsoft/datacontext/config/internal"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/attributes"
+	"github.com/mandelsoft/ctxmgmt/config/internal"
 )
 
 func WithContext(ctx context.Context) internal.Builder {
@@ -20,6 +20,6 @@ func WithConfigTypeScheme(scheme ConfigTypeScheme) internal.Builder {
 	return internal.Builder{}.WithConfigTypeScheme(scheme)
 }
 
-func New(mode ...datacontext.BuilderMode) Context {
+func New(mode ...ctxmgmt.BuilderMode) Context {
 	return internal.Builder{}.New(mode...)
 }

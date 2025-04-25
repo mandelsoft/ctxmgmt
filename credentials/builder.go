@@ -3,9 +3,9 @@ package credentials
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/config"
-	"github.com/mandelsoft/datacontext/credentials/internal"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/config"
+	"github.com/mandelsoft/ctxmgmt/credentials/internal"
 )
 
 func WithContext(ctx context.Context) internal.Builder {
@@ -24,6 +24,6 @@ func WithStandardConumerMatchers(matchers internal.IdentityMatcherRegistry) inte
 	return internal.Builder{}.WithStandardConumerMatchers(matchers)
 }
 
-func New(mode ...datacontext.BuilderMode) Context {
+func New(mode ...ctxmgmt.BuilderMode) Context {
 	return internal.Builder{}.New(mode...)
 }

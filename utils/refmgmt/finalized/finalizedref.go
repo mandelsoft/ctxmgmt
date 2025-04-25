@@ -3,8 +3,8 @@ package finalized
 import (
 	"runtime"
 
-	"github.com/mandelsoft/datacontext/utils/refmgmt"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 type FinalizedRef struct {

@@ -3,8 +3,8 @@ package cpi
 import (
 	"strings"
 
-	"github.com/mandelsoft/datacontext/config/internal"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/config/internal"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 type ConfigTypeVersionScheme = runtime.TypeVersionScheme[Config, ConfigType]

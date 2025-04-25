@@ -3,7 +3,7 @@ package resource
 import (
 	"io"
 
-	"github.com/mandelsoft/datacontext/utils/refmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/refmgmt"
 	"github.com/mandelsoft/goutils/errors"
 	"github.com/mandelsoft/goutils/ioutils"
 )

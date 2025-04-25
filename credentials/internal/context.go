@@ -11,15 +11,15 @@ import (
 	"github.com/mandelsoft/goutils/generics"
 	"github.com/mandelsoft/goutils/maputils"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/config"
-	cfgcpi "github.com/mandelsoft/datacontext/config/cpi"
-	"github.com/mandelsoft/datacontext/utils/runtime"
-	"github.com/mandelsoft/datacontext/utils/runtimefinalizer"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/config"
+	cfgcpi "github.com/mandelsoft/ctxmgmt/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/utils/runtimefinalizer"
 )
 
 // CONTEXT_TYPE is the global type for a credential context.
-const CONTEXT_TYPE = "credentials" + datacontext.CONTEXT_SUFFIX
+const CONTEXT_TYPE = "credentials" + ctxmgmt.CONTEXT_SUFFIX
 
 // ProviderIdentity is used to uniquely identify a provider
 // for a configured consumer id. If non-empty it
@@ -67,11 +67,11 @@ func SetEvaluationContextFor(ectx EvaluationContext, e any) EvaluationContext {
 }
 
 type Context interface {
-	datacontext.Context
+	ctxmgmt.Context
 	ContextProvider
 	config.ContextProvider
 
-	AttributesContext() datacontext.AttributesContext
+	AttributesContext() ctxmgmt.AttributesContext
 	RepositoryTypes() RepositoryTypeScheme
 
 	RepositorySpecForConfig(data []byte, unmarshaler runtime.Unmarshaler) (RepositorySpec, error)
@@ -98,12 +98,12 @@ type Context interface {
 var key = reflect.TypeOf(_context{})
 
 // DefaultContext is the default context initialized by init functions.
-var DefaultContext = Builder{}.New(datacontext.MODE_SHARED)
+var DefaultContext = Builder{}.New(ctxmgmt.MODE_SHARED)
 
 // FromContext returns the Context to use for context.Context.
 // This is either an explicit context or the default context.
 func FromContext(ctx context.Context) Context {
-	c, _ := datacontext.ForContextByKey(ctx, key, DefaultContext)
+	c, _ := ctxmgmt.ForContextByKey(ctx, key, DefaultContext)
 	return c.(Context)
 }
 
@@ -115,19 +115,19 @@ func FromProvider(p ContextProvider) Context {
 }
 
 func DefinedForContext(ctx context.Context) (Context, bool) {
-	c, ok := datacontext.ForContextByKey(ctx, key, DefaultContext)
+	c, ok := ctxmgmt.ForContextByKey(ctx, key, DefaultContext)
 	if c != nil {
 		return c.(Context), ok
 	}
 	return nil, ok
 }
 
-type _InternalContext = datacontext.InternalContext
+type _InternalContext = ctxmgmt.InternalContext
 
 type _context struct {
 	_InternalContext
 
-	sharedattributes         datacontext.AttributesContext
+	sharedattributes         ctxmgmt.AttributesContext
 	updater                  cfgcpi.Updater
 	knownRepositoryTypes     RepositoryTypeScheme
 	consumerIdentityMatchers IdentityMatcherRegistry
@@ -135,21 +135,21 @@ type _context struct {
 }
 
 var (
-	_ Context                          = (*_context)(nil)
-	_ datacontext.ViewCreator[Context] = (*_context)(nil)
+	_ Context                      = (*_context)(nil)
+	_ ctxmgmt.ViewCreator[Context] = (*_context)(nil)
 )
 
 // gcWrapper is used as garbage collectable
 // wrapper for a context implementation
 // to establish a runtime finalizer.
 type gcWrapper struct {
-	datacontext.GCWrapper
+	ctxmgmt.GCWrapper
 	*_context
 }
 
 func newView(c *_context, ref ...bool) Context {
 	if general.Optional(ref...) {
-		return datacontext.FinalizedContext[gcWrapper](c)
+		return ctxmgmt.FinalizedContext[gcWrapper](c)
 	}
 	return c
 }
@@ -158,15 +158,15 @@ func (w *gcWrapper) SetContext(c *_context) {
 	w._context = c
 }
 
-func newContext(configctx config.Context, reposcheme RepositoryTypeScheme, consumerMatchers IdentityMatcherRegistry, delegates datacontext.Delegates) Context {
+func newContext(configctx config.Context, reposcheme RepositoryTypeScheme, consumerMatchers IdentityMatcherRegistry, delegates ctxmgmt.Delegates) Context {
 	c := &_context{
-		sharedattributes:         datacontext.PersistentContextRef(configctx.AttributesContext()),
+		sharedattributes:         ctxmgmt.PersistentContextRef(configctx.AttributesContext()),
 		knownRepositoryTypes:     reposcheme,
 		consumerIdentityMatchers: consumerMatchers,
 		consumerProviders:        newConsumerProviderRegistry(),
 	}
-	c._InternalContext = datacontext.NewContextBase(c, CONTEXT_TYPE, key, configctx.GetAttributes(), delegates)
-	c.updater = cfgcpi.NewUpdaterForFactory(datacontext.PersistentContextRef(configctx), c.CredentialsContext)
+	c._InternalContext = ctxmgmt.NewContextBase(c, CONTEXT_TYPE, key, configctx.GetAttributes(), delegates)
+	c.updater = cfgcpi.NewUpdaterForFactory(ctxmgmt.PersistentContextRef(configctx), c.CredentialsContext)
 	return newView(c, true)
 }
 
@@ -186,7 +186,7 @@ func (c *_context) GetType() string {
 	return CONTEXT_TYPE
 }
 
-func (c *_context) AttributesContext() datacontext.AttributesContext {
+func (c *_context) AttributesContext() ctxmgmt.AttributesContext {
 	return c.sharedattributes
 }
 

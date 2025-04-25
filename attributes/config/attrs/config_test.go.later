@@ -6,15 +6,15 @@ import (
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/config"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/config"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const ATTR_KEY = "test"
 
 func init() {
-	datacontext.RegisterAttributeType(ATTR_KEY, AttributeType{})
+	ctxmgmt.RegisterAttributeType(ATTR_KEY, AttributeType{})
 }
 
 type AttributeType struct{}
@@ -53,7 +53,7 @@ var _ = Describe("generic attributes", func() {
 	var ctx config.Context
 
 	BeforeEach(func() {
-		ctx = config.WithSharedAttributes(datacontext.New(nil)).New()
+		ctx = config.WithSharedAttributes(ctxmgmt.New(nil)).New()
 	})
 
 	Context("applies", func() {

@@ -3,14 +3,14 @@ package attributes
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/action/api"
-	"github.com/mandelsoft/datacontext/action/handlers"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/action/api"
+	"github.com/mandelsoft/ctxmgmt/action/handlers"
 )
 
 type Builder struct {
 	ctx        context.Context
-	attributes datacontext.Attributes
+	attributes ctxmgmt.Attributes
 	actions    handlers.Registry
 }
 
@@ -26,7 +26,7 @@ func (b Builder) WithContext(ctx context.Context) Builder {
 	return b
 }
 
-func (b Builder) WithAttributes(parentAttr datacontext.Attributes) Builder {
+func (b Builder) WithAttributes(parentAttr ctxmgmt.Attributes) Builder {
 	b.attributes = parentAttr
 	return b
 }
@@ -36,26 +36,26 @@ func (b Builder) WithActionHandlers(hdlrs handlers.Registry) Builder {
 	return b
 }
 
-func (b Builder) Bound() (datacontext.Context, context.Context) {
+func (b Builder) Bound() (ctxmgmt.Context, context.Context) {
 	c := b.New()
 	return c, context.WithValue(b.getContext(), key, c)
 }
 
-func (b Builder) New(m ...datacontext.BuilderMode) datacontext.Context {
-	mode := datacontext.Mode(m...)
+func (b Builder) New(m ...ctxmgmt.BuilderMode) ctxmgmt.Context {
+	mode := ctxmgmt.Mode(m...)
 
 	if b.actions == nil {
 		switch mode {
-		case datacontext.MODE_INITIAL:
+		case ctxmgmt.MODE_INITIAL:
 			b.actions = handlers.NewRegistry(api.NewActionTypeRegistry())
-		case datacontext.MODE_CONFIGURED:
+		case ctxmgmt.MODE_CONFIGURED:
 			b.actions = handlers.NewRegistry(api.DefaultRegistry().Copy())
 			handlers.DefaultRegistry().AddTo(b.actions)
-		case datacontext.MODE_EXTENDED:
+		case ctxmgmt.MODE_EXTENDED:
 			b.actions = handlers.NewRegistry(api.DefaultRegistry(), handlers.DefaultRegistry())
-		case datacontext.MODE_DEFAULTED:
+		case ctxmgmt.MODE_DEFAULTED:
 			fallthrough
-		case datacontext.MODE_SHARED:
+		case ctxmgmt.MODE_SHARED:
 			b.actions = handlers.DefaultRegistry()
 		}
 	}

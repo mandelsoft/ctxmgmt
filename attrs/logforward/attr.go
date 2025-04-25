@@ -7,8 +7,8 @@ import (
 	logcfg "github.com/mandelsoft/logging/config"
 	"sigs.k8s.io/yaml"
 
-	"github.com/mandelsoft/datacontext"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const (
@@ -17,7 +17,7 @@ const (
 )
 
 func init() {
-	datacontext.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
+	ctxmgmt.RegisterAttributeType(ATTR_KEY, AttributeType{}, ATTR_SHORT)
 }
 
 type AttributeType struct{}
@@ -53,7 +53,7 @@ func (a AttributeType) Decode(data []byte, unmarshaller runtime.Unmarshaler) (in
 
 ////////////////////////////////////////////////////////////////////////////////
 
-func Get(ctx datacontext.Context) *logcfg.Config {
+func Get(ctx ctxmgmt.Context) *logcfg.Config {
 	v := ctx.GetAttributes().GetAttribute(ATTR_KEY)
 	if v == nil {
 		return nil
@@ -61,6 +61,6 @@ func Get(ctx datacontext.Context) *logcfg.Config {
 	return v.(*logcfg.Config)
 }
 
-func Set(ctx datacontext.Context, c *logcfg.Config) {
+func Set(ctx ctxmgmt.Context, c *logcfg.Config) {
 	ctx.GetAttributes().SetAttribute(ATTR_KEY, c)
 }

@@ -4,7 +4,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/mandelsoft/datacontext/credentials/cpi"
+	"github.com/mandelsoft/ctxmgmt/credentials/cpi"
 )
 
 // IDENTITY_TYPE is the identity of this matcher.

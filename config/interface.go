@@ -3,9 +3,9 @@ package config
 import (
 	"context"
 
-	"github.com/mandelsoft/datacontext/config/cpi"
-	"github.com/mandelsoft/datacontext/config/internal"
-	"github.com/mandelsoft/datacontext/utils/runtime"
+	"github.com/mandelsoft/ctxmgmt/config/cpi"
+	"github.com/mandelsoft/ctxmgmt/config/internal"
+	"github.com/mandelsoft/ctxmgmt/utils/runtime"
 )
 
 const KIND_CONFIGTYPE = internal.KIND_CONFIGTYPE
