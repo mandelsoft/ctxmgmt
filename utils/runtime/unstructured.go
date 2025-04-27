@@ -28,7 +28,7 @@ const ATTR_TYPE = "type"
 // object with anonymous fields is not stable, because the inline fields
 // are sorted depth first for marshalling, while maps key are marshaled
 // completely in order.
-// Therefore we do not store the raw bytes but marshal them always from
+// Therefore, we do not store the raw bytes but marshal them always from
 // the UnstructuredMap.
 
 // Unstructured is the interface to represent generic object data for
@@ -80,6 +80,17 @@ func (m UnstructuredMap) Match(o UnstructuredMap) bool {
 		}
 	}
 	return true
+}
+
+func (m UnstructuredMap) StringValue(n string) (string, bool) {
+	v, ok := m[n]
+	if !ok || v == nil {
+		return "", false
+	}
+	if s, ok := v.(string); ok {
+		return s, ok
+	}
+	return "", false
 }
 
 func matchValue(a, b interface{}) bool {

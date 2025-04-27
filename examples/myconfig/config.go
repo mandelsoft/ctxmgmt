@@ -13,16 +13,16 @@ import (
 // To be globally unique, it should always end with a
 // DNS domain owned by the provider of the new type.
 // --- begin type name ---
-const TYPE = "example.config.acme.org"
+const TYPE = "application.config.acme.org"
 
 // --- end type name ---
 
-// MyConfigObject is the new Go type for the config specification
+// Config is the new Go type for the config specification
 // covering our example configuration.
 // It just encapsulates our simple configuration structure
 // used to configure the examples of our tour.
 // --- begin config type ---
-type MyConfigObject struct {
+type Config struct {
 	// ObjectVersionedType is the base type providing the type feature
 	// for (config) specifications.
 	runtime.ObjectVersionedType `json:",inline"`
@@ -33,21 +33,23 @@ type MyConfigObject struct {
 
 	// Credentials are the credentials required to access the service
 	// located at ServiceAddress.
-	Credentials struct {
-		Username string `json:"username,omitempty"`
-		Password string `json:"password,omitempty"`
-	} `json:"credentials,omitempty"`
+	Credentials *Credentials `json:"credentials,omitempty"`
+}
+
+type Credentials struct {
+	Username string `json:"username,omitempty"`
+	Password string `json:"password,omitempty"`
 }
 
 // A config object object must implememt the config.Config interface.
-var _ config.Config = (*MyConfigObject)(nil)
+var _ config.Config = (*Config)(nil)
 
 // --- end config type ---
 
 // NewConfig provides a config object for our application configuration.
 // --- begin constructor ---
-func NewConfig(addr string) *MyConfigObject {
-	return &MyConfigObject{
+func NewConfig(addr string) *Config {
+	return &Config{
 		ObjectVersionedType: runtime.NewVersionedTypedObject(TYPE),
 		ServiceAddress:      addr,
 	}
@@ -61,53 +63,61 @@ func NewConfig(addr string) *MyConfigObject {
 // --- begin setters ---
 
 // SetCredentials sets the credentials required by the application.
-func (c *MyConfigObject) SetCredentials(user, pass string) {
-	c.Credentials.Username = user
-	c.Credentials.Password = pass
+func (c *Config) SetCredentials(user, pass string) {
+	c.Credentials = &Credentials{
+		Username: user,
+		Password: pass,
+	}
 }
 
 // SetAddress sets address of used service.
-func (c *MyConfigObject) SetAddress(desc string) {
+func (c *Config) SetAddress(desc string) {
 	c.ServiceAddress = desc
-}
-
-func (c *MyConfigObject) GetCredentials() credentials.Credentials {
-	return credentials.NewCredentials(utils.Properties{
-		identity.ATTR_USERNAME: c.Credentials.Username,
-		identity.ATTR_PASSWORD: c.Credentials.Password,
-	})
 }
 
 // --- end setters ---
 
-// --- begin config interface ---
+// --- begin getters ---
+func (c *Config) GetCredentials() credentials.Credentials {
+	if c.Credentials != nil && c.Credentials.Username != "" && c.Credentials.Password != "" {
+		return credentials.NewCredentials(utils.Properties{
+			identity.ATTR_USERNAME: c.Credentials.Username,
+			identity.ATTR_PASSWORD: c.Credentials.Password,
+		})
+	}
+	return nil
+}
+
+// --- end getters ---
+
+// --- begin target interface ---
 
 // ConfigTarget consumes a repository name.
 type ConfigTarget interface {
 	SetServiceAddress(r string)
 }
 
-// --- end config interface ---
+// --- end target interface ---
 
 // ApplyTo is used to apply the provided configuration settings
 // to a dedicated object, which wants to be configured.
-// --- begin apply ---.
-func (c *MyConfigObject) ApplyTo(_ cpi.Context, tgt interface{}) error {
+// --- begin method apply ---.
+func (c *Config) ApplyTo(_ cpi.Context, tgt interface{}) error {
 	switch t := tgt.(type) {
 	// if the target is a credentials context
 	// configure the credentials to be used for the
 	// described OCI repository.
 	case credentials.Context:
 		// determine the consumer id for our target repository.
-		if c.Credentials.Username != "" && c.Credentials.Password != "" {
+		if c.Credentials != nil && c.Credentials.Username != "" && c.Credentials.Password != "" {
 			id := identity.GetConsumerId(c.ServiceAddress)
 
 			// create the credentials.
-			creds := c.GetCredentials()
-
-			// configure the targeted credential context with
-			// the provided credentials (see previous examples).
-			t.SetCredentialsForConsumer(id, creds)
+			if creds := c.GetCredentials(); creds != nil {
+				// configure the targeted credential context with
+				// the provided credentials (see previous examples).
+				t.SetCredentialsForConsumer(id, creds)
+			}
 		}
 
 	// if the target consumes an OCI repository, propagate
@@ -123,7 +133,7 @@ func (c *MyConfigObject) ApplyTo(_ cpi.Context, tgt interface{}) error {
 	return nil
 }
 
-// --- end apply ---
+// --- end method apply ---
 
 // to enable automatic deserialization of our new config type,
 // we have to tell the configuration management about our
@@ -141,5 +151,7 @@ func init() {
 	// register the new config type, so that is can be used
 	// by the config management to deserialize appropriately
 	// typed specifications.
-	cpi.RegisterConfigType(cpi.NewConfigType[*MyConfigObject](TYPE, "this ia config object type based on the example config data."))
+	cpi.RegisterConfigType(cpi.NewConfigType[*Config](TYPE, "this is a config object type based on the example config data."))
 }
+
+// --- end init ---.

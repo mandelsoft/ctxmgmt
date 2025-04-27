@@ -1,0 +1,4 @@
+type: generic.config.mandelsoft.de/v1
+configurations:
+- type: application.config.acme.org
+  serviceAddress: localhost:8080

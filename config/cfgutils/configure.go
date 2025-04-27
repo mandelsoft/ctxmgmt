@@ -41,7 +41,7 @@ func Configure2(ctx config.ContextProvider, path string, fss ...vfs.FileSystem) 
 	if path != "" && path != "None" {
 		data, err := vfs.ReadFile(fs, path)
 		if err != nil {
-			return nil, errors.Wrapf(err, "cannot read ocm config file %q", path)
+			return nil, errors.Wrapf(err, "cannot read config file %q", path)
 		}
 
 		if eff, err := ConfigureByData2(ctx, data, path); err != nil {

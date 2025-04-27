@@ -8,6 +8,7 @@ import (
 )
 
 const KIND_CONFIGTYPE = internal.KIND_CONFIGTYPE
+const KIND_CONFIGAPPLIER = internal.KIND_CONFIGAPPLIER
 const CONFIG_TYPE_SUFFIX = internal.CONFIG_TYPE_SUFFIX
 const CONTEXT_TYPE = internal.CONTEXT_TYPE
 
@@ -24,6 +25,7 @@ type (
 
 	ConfigApplier         = internal.ConfigApplier
 	ConfigApplierFunction = internal.ConfigApplierFunction
+	ConfigApplierRegistry = internal.ConfigApplierRegistry
 )
 
 var DefaultContext = internal.DefaultContext

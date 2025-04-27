@@ -11,6 +11,7 @@ type Builder struct {
 	ctx        context.Context
 	shared     attributes.AttributesContext
 	reposcheme ConfigTypeScheme
+	appliers   ConfigApplierRegistry
 }
 
 func (b *Builder) getContext() context.Context {
@@ -32,6 +33,11 @@ func (b Builder) WithSharedAttributes(ctx attributes.AttributesContext) Builder 
 
 func (b Builder) WithConfigTypeScheme(scheme ConfigTypeScheme) Builder {
 	b.reposcheme = scheme
+	return b
+}
+
+func (b Builder) WithConfigAppliers(r ConfigApplierRegistry) Builder {
+	b.appliers = r
 	return b
 }
 
@@ -66,5 +72,22 @@ func (b Builder) New(m ...ctxmgmt.BuilderMode) Context {
 			b.reposcheme = DefaultConfigTypeScheme
 		}
 	}
-	return ctxmgmt.SetupContext(mode, newContext(b.shared, b.reposcheme, b.shared))
+
+	if b.appliers == nil {
+		switch mode {
+		case ctxmgmt.MODE_INITIAL:
+			b.appliers = NewConfigApplierRegistry()
+		case ctxmgmt.MODE_CONFIGURED:
+			b.appliers = NewConfigApplierRegistry()
+			b.appliers.AddKnown(DefaultConfigApplierRegistry)
+		case ctxmgmt.MODE_EXTENDED:
+			b.appliers = NewConfigApplierRegistry(DefaultConfigApplierRegistry)
+		case ctxmgmt.MODE_DEFAULTED:
+			fallthrough
+		case ctxmgmt.MODE_SHARED:
+			b.appliers = DefaultConfigApplierRegistry
+		}
+	}
+
+	return ctxmgmt.SetupContext(mode, newContext(b.shared, b.reposcheme, b.appliers, b.shared))
 }

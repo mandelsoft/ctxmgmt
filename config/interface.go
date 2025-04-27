@@ -24,11 +24,15 @@ type (
 	Config                 = internal.Config
 	ConfigType             = internal.ConfigType
 	ConfigTypeScheme       = internal.ConfigTypeScheme
+	ConfigSet              = internal.ConfigSet
+	ConfigurationList      = internal.ConfigurationList
 	GenericConfig          = internal.GenericConfig
 	ConfigSelector         = internal.ConfigSelector
 	ConfigSelectorFunction = internal.ConfigSelectorFunction
-	ConfigApplier          = internal.ConfigApplier
-	ConfigApplierFunction  = internal.ConfigApplierFunction
+
+	ConfigApplier         = internal.ConfigApplier
+	ConfigApplierFunction = internal.ConfigApplierFunction
+	ConfigApplierRegistry = internal.ConfigApplierRegistry
 )
 
 func DefaultContext() internal.Context {
@@ -73,4 +77,8 @@ func IsErrNoContext(err error) bool {
 
 func IsErrConfigNotApplicable(err error) bool {
 	return cpi.IsErrConfigNotApplicable(err)
+}
+
+func NewConfigSet(desc string) *ConfigSet {
+	return internal.NewConfigSet(desc)
 }

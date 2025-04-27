@@ -38,7 +38,7 @@ require (
 	github.com/hashicorp/go-rootcerts v1.0.2 // indirect
 	github.com/hashicorp/go-secure-stdlib/strutil v0.1.2 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
-	github.com/mandelsoft/mdref v0.4.1 // indirect
+	github.com/mandelsoft/mdref v0.5.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect

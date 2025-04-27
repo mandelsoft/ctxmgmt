@@ -19,8 +19,9 @@ const (
 
 // credential properties.
 const (
-	ATTR_USERNAME = credentials.ATTR_USERNAME
-	ATTR_PASSWORD = credentials.ATTR_PASSWORD
+	ATTR_USERNAME    = credentials.ATTR_USERNAME
+	ATTR_PASSWORD    = credentials.ATTR_PASSWORD
+	ATTR_CERTIFICATE = credentials.ATTR_CERTIFICATE
 )
 
 var IdentityMatcher = hostpath.IdentityMatcher(CONSUMER_TYPE)
@@ -29,6 +30,7 @@ func init() {
 	attrs := listformat.FormatListElements("", listformat.StringElementDescriptionList{
 		ATTR_USERNAME, "user name",
 		ATTR_PASSWORD, "password",
+		ATTR_CERTIFICATE, "client certificate",
 	})
 	ids := listformat.FormatListElements("", listformat.StringElementDescriptionList{
 		ID_HOSTNAME, "vault server host",
@@ -43,6 +45,7 @@ It uses the following identity attributes:
 `+ids, attrs)
 }
 
+// --- begin consumer id ---
 func GetConsumerId(addr string) credentials.ConsumerIdentity {
 	h, p, s := oci.SplitLocator(addr)
 	return credentials.NewConsumerIdentity(CONSUMER_TYPE,
@@ -51,3 +54,5 @@ func GetConsumerId(addr string) credentials.ConsumerIdentity {
 		hostpath.ID_PATHPREFIX, s,
 	)
 }
+
+// --- end consumer id ---

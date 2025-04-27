@@ -1,0 +1,20 @@
+type: generic.config.mandelsoft.de/v1
+configurations:
+- type: credentials.config.mandelsoft.de
+  consumers:
+      - identity:
+          type: service.acme.corp
+          hostname: localhost
+        credentials:
+          - type: Credentials
+            properties:
+              username: testuser
+              password: testpassword
+  repositories:
+          - repository:
+              type: DockerConfig/v1
+              dockerConfigFile: "~/.docker/config.json"
+              propagateConsumerIdentity: true
+
+- type: application.config.acme.org
+  serviceAddress: localhost:8080

@@ -31,8 +31,10 @@ func BasicConfigurationHandling() error {
 	// now we create such an object to configure our application
 	// --- begin my config ---
 	cfg := myconfig.NewConfig("service.provider.com")
-	cfg.Credentials.Username = "appuser"
-	cfg.Credentials.Password = "apppass"
+	cfg.Credentials = &myconfig.Credentials{
+		Username: "appuser",
+		Password: "apppass",
+	}
 	// --- end my config ---
 
 	// configuration objects are typically serializable and deserializable.
@@ -104,7 +106,7 @@ func BasicConfigurationHandling() error {
 	}
 	// --- end configure ---
 
-	// now, the address should be configured in out config target
+	// now, the address should be configured in our config target
 
 	helper.Output("result", func() {
 		fmt.Printf("configured address is %q\n", tgt.address)

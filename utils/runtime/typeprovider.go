@@ -17,10 +17,17 @@ func init() {
 
 type TypeProvider interface {
 	GetTypeFor([]byte, Unmarshaler) (string, bool)
+	GetTypeForMap(data UnstructuredMap) (string, bool)
+	SetTypeForMap(data UnstructuredMap, t string)
 }
 
 type TypeProviderRegistry interface {
-	TypeProvider
+	GetTypeFor([]byte, Unmarshaler) (string, bool)
+	GetTypeForMap(data UnstructuredMap) (string, bool)
+
+	GetTypeProviderFor([]byte, Unmarshaler) (TypeProvider, string, bool)
+	GetTypeProviderForMap(data UnstructuredMap) (TypeProvider, string, bool)
+
 	Register(name string, p TypeProvider)
 	Get(name string) TypeProvider
 	Names() []string
@@ -87,18 +94,43 @@ func (r *_TypeProviderRegistry) Get(name string) TypeProvider {
 }
 
 func (r *_TypeProviderRegistry) GetTypeFor(data []byte, m Unmarshaler) (string, bool) {
+	_, t, ok := r.GetTypeProviderFor(data, m)
+	return t, ok
+}
+
+func (r *_TypeProviderRegistry) GetTypeProviderFor(data []byte, m Unmarshaler) (TypeProvider, string, bool) {
 	r.lock.Lock()
 	defer r.lock.Unlock()
 
 	for _, p := range r.providers {
 		if t, ok := p.GetTypeFor(data, m); ok {
-			return t, ok
+			return p, t, ok
 		}
 	}
 	if r.base != nil {
-		return r.base.GetTypeFor(data, m)
+		return r.base.GetTypeProviderFor(data, m)
 	}
-	return "", false
+	return nil, "", false
+}
+
+func (r *_TypeProviderRegistry) GetTypeForMap(data UnstructuredMap) (string, bool) {
+	_, t, ok := r.GetTypeProviderForMap(data)
+	return t, ok
+}
+
+func (r *_TypeProviderRegistry) GetTypeProviderForMap(data UnstructuredMap) (TypeProvider, string, bool) {
+	r.lock.Lock()
+	defer r.lock.Unlock()
+
+	for _, p := range r.providers {
+		if t, ok := p.GetTypeForMap(data); ok {
+			return p, t, ok
+		}
+	}
+	if r.base != nil {
+		return r.base.GetTypeProviderForMap(data)
+	}
+	return nil, "", false
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +141,7 @@ type DefaultProvider struct {
 
 var _ TypeProvider = (*DefaultProvider)(nil)
 
-func (d DefaultProvider) GetTypeFor(data []byte, m Unmarshaler) (string, bool) {
+func (DefaultProvider) GetTypeFor(data []byte, m Unmarshaler) (string, bool) {
 	un := &UnstructuredTypedObject{}
 
 	err := m.Unmarshal(data, un)
@@ -117,6 +149,21 @@ func (d DefaultProvider) GetTypeFor(data []byte, m Unmarshaler) (string, bool) {
 		return "", false
 	}
 	return un.GetType(), un.GetType() != ""
+}
+
+func (DefaultProvider) GetTypeForMap(data UnstructuredMap) (string, bool) {
+	v, ok := data[ATTR_TYPE]
+	if !ok {
+		return "", false
+	}
+	if s, ok := v.(string); ok {
+		return s, true
+	}
+	return "", false
+}
+
+func (DefaultProvider) SetTypeForMap(data UnstructuredMap, t string) {
+	data[ATTR_TYPE] = t
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -133,7 +180,7 @@ type manifest struct {
 	Kind       string `json:"kind"`
 }
 
-func (d *KubernetesProvider) GetTypeFor(data []byte, m Unmarshaler) (string, bool) {
+func (KubernetesProvider) GetTypeFor(data []byte, m Unmarshaler) (string, bool) {
 	un := &manifest{}
 
 	err := m.Unmarshal(data, un)
@@ -142,6 +189,24 @@ func (d *KubernetesProvider) GetTypeFor(data []byte, m Unmarshaler) (string, boo
 	}
 
 	return MapK8SManifestInfoToType(un.ApiVersion, un.Kind)
+}
+
+func (KubernetesProvider) GetTypeForMap(data UnstructuredMap) (string, bool) {
+	gv, ok := data.StringValue("apiVersion")
+	if !ok {
+		return "", false
+	}
+	k, ok := data.StringValue("kind")
+	if !ok {
+		return "", false
+	}
+	return MapK8SManifestInfoToType(gv, k)
+}
+
+func (KubernetesProvider) SetTypeForMap(data UnstructuredMap, t string) {
+	gv, k := MapTypeToK8SManifestInfo(t)
+	data["apiVersion"] = gv
+	data["kind"] = k
 }
 
 func MapK8SManifestInfoToType(apiVersion, kind string) (string, bool) {

@@ -10,10 +10,6 @@ import (
 
 const KIND_CONFIGSET = "config set"
 
-type ConfigApplier interface {
-	ApplyConfigTo(Context, cfg, tgt interface{}) error
-}
-
 type Config interface {
 	runtime.VersionedTypedObject
 
@@ -29,6 +25,10 @@ func (f ConfigApplierFunction) ApplyConfigTo(ctx Context, cfg, tgt interface{}) 
 type ConfigSet struct {
 	Description       string `json:"description,omitempty"`
 	ConfigurationList `json:",inline"`
+}
+
+func NewConfigSet(desc string) *ConfigSet {
+	return &ConfigSet{Description: desc}
 }
 
 type ConfigurationList struct {

@@ -36,17 +36,6 @@ type ContentSpec struct {
 	FileSystem vfs.FileSystem `json:"-"`
 }
 
-/*
-func t(getter blobaccess.GenericDataGetter) {}
-func t1() {
-	var spec ContentSpec
-
-	// Go live....
-	spec.Get() // you can call the method
-	t(spec)    // but it does not implement the interface, if the method has a pointer receiver
-}
-*/
-
 func (k ContentSpec) Get() (interface{}, error) {
 	// Must be value receiver to meet above type constraints.
 	if k.Parsed != nil {

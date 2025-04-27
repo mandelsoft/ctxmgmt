@@ -5,8 +5,6 @@ import (
 	"os"
 )
 
-var current_version string
-
 func main() {
 	var err error
 	cmd := "application"
@@ -21,25 +19,12 @@ func main() {
 			}
 		}
 	}
-
 	if len(args) > 0 {
 		cmd = args[0]
 	}
 	switch cmd {
-	case "basic":
-		err = BasicConfigurationHandling()
-	case "generic":
-		err = HandleArbitraryConfiguration()
-	case "central":
-		err = HandleCentralConfiguration()
-	case "configset":
-		err = WorkingWithConfigSets()
-	case "write":
-		err = WriteConfigType()
-	case "consume":
-		err = WriteConfigConsumer()
-	case "applier":
-		err = UsingConfigAppliers()
+	case "application":
+		err = RunApplication()
 	default:
 		err = fmt.Errorf("unknown example %q", cmd)
 	}

@@ -13,6 +13,10 @@ func NewConfigTypeVersionScheme(kind string) ConfigTypeVersionScheme {
 	return runtime.NewTypeVersionScheme[Config, ConfigType](kind, internal.NewStrictConfigTypeScheme())
 }
 
+func RegisterConfigApplier(name string, applier ConfigApplier) {
+	internal.DefaultConfigApplierRegistry.Register(name, applier)
+}
+
 func RegisterConfigType(rtype ConfigType) {
 	internal.DefaultConfigTypeScheme.Register(rtype)
 }

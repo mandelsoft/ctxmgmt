@@ -131,8 +131,8 @@ func NewConsumerIdentity(typ string, attrs ...string) ConsumerIdentity {
 	for len(attrs) > i {
 		if attrs[i+1] != "" {
 			r[attrs[i]] = attrs[i+1]
-			i += 2
 		}
+		i += 2
 	}
 	return r
 }

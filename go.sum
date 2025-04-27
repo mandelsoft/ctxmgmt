@@ -56,6 +56,10 @@ github.com/mandelsoft/logging v0.0.0-20240618075559-fdca28a87b0a h1:MAvh0gbP2uwK
 github.com/mandelsoft/logging v0.0.0-20240618075559-fdca28a87b0a/go.mod h1:uO460C1lIB3IOOgrbXhAlz3AKsOv4T2K6ALBn3PwuSg=
 github.com/mandelsoft/mdref v0.4.1 h1:k61vzawwTTdeSS0+yRQh+RN7TplUGxifgsMgXcqsP1s=
 github.com/mandelsoft/mdref v0.4.1/go.mod h1:BVPA9SFatJae0AZPa/K8UVQS4ktQiYirT5pWAmBcjF4=
+github.com/mandelsoft/mdref v0.4.2-0.20250331011030-1ff274c169fa h1:Ty2WCXD7IfOnAD/ZwSTUueFrMr33M+hJnGu7tirpnM0=
+github.com/mandelsoft/mdref v0.4.2-0.20250331011030-1ff274c169fa/go.mod h1:IGfs+sQyQsenNBUWKK8pSCGchdDKKnUsFEYjqAQjwa0=
+github.com/mandelsoft/mdref v0.5.0 h1:cV/1ryKjYc5ddJ3q31P8qki5EV+vCAgoSxGaF5yC00c=
+github.com/mandelsoft/mdref v0.5.0/go.mod h1:SR3kh0z7LJVAd2JuccgV2W5v3CMmJUHvu49nCjcgKwc=
 github.com/mandelsoft/spiff v1.7.0-beta-7 h1:ow8hgn7A80RlgsN2wjVpwl/7HSObzw3ph3m4vay7KZs=
 github.com/mandelsoft/spiff v1.7.0-beta-7/go.mod h1:HXurS33cKPLXXAI3SYll+Z6QotB1yzFFDyOFZ4QODcA=
 github.com/mandelsoft/vfs v0.4.4 h1:hq+nI7NWzLLWR3Ii/w4agup4KpWjLpw6dAGtmvWr1Vw=

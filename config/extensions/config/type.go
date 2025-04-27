@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/mandelsoft/goutils/errors"
+	"github.com/mandelsoft/goutils/sliceutils"
 
 	"github.com/mandelsoft/ctxmgmt/config/cpi"
 	"github.com/mandelsoft/ctxmgmt/utils/runtime"
@@ -24,6 +25,7 @@ type Config struct {
 	runtime.ObjectVersionedType `json:",inline"`
 	cpi.ConfigurationList       `json:",inline"`
 	Sets                        map[string]cpi.ConfigSet `json:"sets,omitempty"`
+	SetActivations              []string                 `json:"setActivations,omitempty"`
 }
 
 // New creates a new memory ConfigSpec.
@@ -41,6 +43,10 @@ func (c *Config) AddSet(name, desc string) {
 	c.Sets[name] = set
 }
 
+func (c *Config) AddConfigSet(name string, set *cpi.ConfigSet) {
+	c.Sets[name] = *set
+}
+
 func (c *Config) AddConfigToSet(name string, cfg cpi.Config) error {
 	set := c.Sets[name]
 	err := set.AddConfig(cfg)
@@ -48,6 +54,10 @@ func (c *Config) AddConfigToSet(name string, cfg cpi.Config) error {
 		c.Sets[name] = set
 	}
 	return err
+}
+
+func (c *Config) ActivateSet(name ...string) {
+	c.SetActivations = sliceutils.AppendUnique(c.SetActivations, name...)
 }
 
 func (c *Config) GetType() string {
@@ -65,6 +75,11 @@ func (c *Config) ApplyTo(ctx cpi.Context, target interface{}) error {
 		for i, cfg := range c.Configurations {
 			sub := fmt.Sprintf("config entry %d", i)
 			list.Add(cctx.ApplyConfig(cfg, ctx.WithInfo(sub).Info()))
+		}
+
+		for _, s := range c.SetActivations {
+			err := cctx.ApplyConfigSet(s)
+			list.Add(errors.Wrapf(err, "applying config set %q", s))
 		}
 		return list.Result()
 	}

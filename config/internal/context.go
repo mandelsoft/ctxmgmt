@@ -45,6 +45,7 @@ type Context interface {
 	WithInfo(desc string) Context
 
 	ConfigTypes() ConfigTypeScheme
+	ConfigAppliers() ConfigApplierRegistry
 
 	// SkipUnknownConfig can be used to control the behaviour
 	// for processing unknown configuration object types.
@@ -135,6 +136,7 @@ type coreContext struct {
 	sharedAttributes attributes.AttributesContext
 
 	knownConfigTypes ConfigTypeScheme
+	appliers         ConfigApplierRegistry
 
 	configs           *ConfigStore
 	skipUnknownConfig bool
@@ -169,11 +171,12 @@ func (w *gcWrapper) SetContext(c *_context) {
 	w._context = c
 }
 
-func newContext(shared attributes.AttributesContext, reposcheme ConfigTypeScheme, delegates ctxmgmt.Delegates) Context {
+func newContext(shared attributes.AttributesContext, reposcheme ConfigTypeScheme, appliers ConfigApplierRegistry, delegates ctxmgmt.Delegates) Context {
 	c := &_context{
 		coreContext: &coreContext{
 			sharedAttributes: shared,
 			knownConfigTypes: reposcheme,
+			appliers:         appliers,
 			configs:          NewConfigStore(),
 		},
 	}
@@ -216,6 +219,10 @@ func (c *_context) AttributesContext() attributes.AttributesContext {
 
 func (c *_context) ConfigTypes() ConfigTypeScheme {
 	return c.knownConfigTypes
+}
+
+func (c *_context) ConfigAppliers() ConfigApplierRegistry {
+	return c.appliers
 }
 
 func (c *_context) SkipUnknownConfig(b bool) bool {
