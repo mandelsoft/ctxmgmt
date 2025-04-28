@@ -70,7 +70,7 @@ configured for the application and the service client.
 {{execute}{go}{run}{../examples/working-with-credentials}{--dir}{../examples/working-with-credentials}{application}{<extract>}{app info}}
 ```
 
-The complete example can be found in [examples/working-with-credentials/00-application-scenario.go](examples/working-with-credentials/00-application-scenario.go).
+The complete example can be found in [examples/working-with-credentials/00-application-scenario.go](00-application-scenario.go).
 
 
 ## The Tour

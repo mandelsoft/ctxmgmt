@@ -115,6 +115,10 @@ func SetEvaluationContextFor(ectx EvaluationContext, e any) {
 	internal.SetEvaluationContextFor(ectx, e)
 }
 
+func SimpleCredentials(user, passwd string) Credentials {
+	return internal.SimpleCredentials(user, passwd)
+}
+
 var (
 	CompleteMatch = internal.CompleteMatch
 	NoMatch       = internal.NoMatch

@@ -137,3 +137,7 @@ func GuessConsumerType(ctxp ContextProvider, spec string) string {
 	}
 	return spec
 }
+
+func SimpleCredentials(user, passwd string) Credentials {
+	return internal.SimpleCredentials(user, passwd)
+}

@@ -17,10 +17,11 @@ It covers the following basic scenarios:
 
 ## Running the example
 
-You can call the main program with the name of the scenario under `examples/working-with-config`.
+You can call the main program with the name of the scenario as argument under `examples/working-with-config`.
 
 ## General Architecture
 
+The configuration management can be found in sub package `config`.
 Configuration is managed by a configuration context. This context is configured with
 a set of context object types. A config type has a type name and provides a deserialization
 of an appropriately types text representation of the setting of the config object.
@@ -57,6 +58,8 @@ its `Updater` object.
 
 ### Basic Configuration Management
 {{basic}}
+
+The complete example code can be found in [examples/working-with-config/01-basic-config-management.go](01-basic-config-management.go).
 
 To use the configuration management an appropriate configuration context object
 is required. The most simple way to achieve such an object is to use
@@ -161,6 +164,8 @@ The result is then
 ### Handling of Arbitrary Configuration
 {{generic}}
 
+The complete example code can be found in [examples/working-with-config/02-handle-arbitrary-config.go](02-handle-arbitrary-config.go).
+
 The config management not only manages configuration objects for any
 other configurable object, it also provides a configuration object of
 its own. The task of this object is to handle other configuration objects
@@ -236,6 +241,8 @@ configuration file for the OCM ecosystem, as will be shown in the next example.
 
 ### Central Configuration
 {{central}}
+
+The complete example code can be found in [examples/working-with-config/03-using-central-config.go](03-using-central-config.go).
 
 Although the configuration of a context can
 be done by a sequence of explicit calls to a configuration context
@@ -362,6 +369,8 @@ valid certificate.
 ### Working with Config Sets
 {{config-sets}}
 
+The complete example code can be found in [examples/working-with-config/04-config-sets.go](04-config-sets.go).
+
 A `ConfigSet` represents, like configuration objects of the configuration context, a list of
 configuration objects, but it is not itself a configuration object. Instead, it can be used
 to configure named lists of configuration objects at a configuration context.
@@ -425,6 +434,8 @@ and reconfiguring our config target, the result is adapted, accordingly:
 
 ### Providing new Config Object Types
 {{write-config}}
+
+The complete example code can be found in [examples/working-with-config/05-write-config-type.go](05-write-config-type.go).
 
 So far, we just showed how to use config types to configure objects.
 But the configuration management is highly extensible, and it is quite
@@ -651,6 +662,8 @@ A complete scenario is shown in the next example.
 {{consume-config}}
 ### Preparing Objects to be Configured by the Config Management
 
+The complete example code can be found in [examples/working-with-config/06-write-config-consumer.go](06-write-config-consumer.go).
+
 We already have our new acme.corp config object type,
 and a target interface which must be implemented by a target
 object to be configurable. The last example showed how
@@ -781,6 +794,8 @@ This gives us the following output:
 
 ### Using Config Appliers for Generic Config Data Providers
 {{config-appliers}}
+
+The complete example code can be found in [examples/working-with-config/07-config-appliers.go](07-config-appliers.go).
 
 A typical config object bundles the configuration logic
 with particular configuration fields.

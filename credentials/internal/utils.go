@@ -23,3 +23,10 @@ func CredentialsForConsumer(ctx ContextProvider, id ConsumerIdentity, unknownAsE
 	}
 	return creds, nil
 }
+
+func SimpleCredentials(user, passwd string) Credentials {
+	return DirectCredentials{
+		ATTR_USERNAME: user,
+		ATTR_PASSWORD: passwd,
+	}
+}

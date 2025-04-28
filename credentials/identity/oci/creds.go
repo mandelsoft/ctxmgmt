@@ -7,10 +7,7 @@ import (
 )
 
 func SimpleCredentials(user, passwd string) cpi.Credentials {
-	return cpi.DirectCredentials{
-		ATTR_USERNAME: user,
-		ATTR_PASSWORD: passwd,
-	}
+	return cpi.SimpleCredentials(user, passwd)
 }
 
 func GetCredentials(ctx cpi.ContextProvider, locator, repo string) (cpi.Credentials, error) {

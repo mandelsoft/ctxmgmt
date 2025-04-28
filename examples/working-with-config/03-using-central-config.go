@@ -96,7 +96,7 @@ func HandleCentralConfiguration() error {
 	// A typical minimal <code>.acmeconfig</code> file can be composed as follows.
 	// We add this config object to an empty generic configuration object
 	// and print the serialized form. The result can be used as
-	// default initial OCM configuration file.
+	// default initial configuration file.
 
 	// --- begin default config ---
 	cfg := configcfg.New()
@@ -104,7 +104,7 @@ func HandleCentralConfiguration() error {
 
 	spec, err := yaml.Marshal(cfg)
 	if err != nil {
-		return errors.Wrapf(err, "marshal ocm config")
+		return errors.Wrapf(err, "marshal config")
 	}
 	// --- end default config ---
 

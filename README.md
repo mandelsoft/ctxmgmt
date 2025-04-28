@@ -163,7 +163,7 @@ service client:
  certificate: 
 ```
 
-The complete example can be found in [examples/working-with-credentials/00-application-scenario.go](examples/working-with-credentials/00-application-scenario.go).
+The complete example can be found in [examples/working-with-credentials/00-application-scenario.go](00-application-scenario.go).
 
 
 ## The Tour
