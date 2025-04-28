@@ -136,7 +136,6 @@ type (
 		TypedObjectDecoder[T]
 
 		BaseScheme() Scheme[T, R] // Go does not support an additional type parameter S Scheme[T,S] to return the correct type here
-		TypeProviders() TypeProviderRegistry
 
 		AddKnownTypes(scheme KnownTypesProvider[T, R])
 		RegisterByDecoder(typ string, decoder R) error
@@ -163,7 +162,6 @@ type SchemeCommon interface {
 type defaultScheme[T TypedObject, R TypedObjectDecoder[T]] struct {
 	lock           sync.RWMutex
 	base           Scheme[T, R]
-	typeproviders  TypeProviderRegistry
 	instance       reflect.Type
 	unstructured   reflect.Type
 	defaultdecoder TypedObjectDecoder[T]
@@ -205,28 +203,14 @@ func NewDefaultScheme[T TypedObject, R TypedObjectDecoder[T]](protoUnstr Unstruc
 		}
 	}
 
-	var tpr TypeProviderRegistry
-
 	b := general.Optional(base...)
-	if b != nil {
-		tpr = b.TypeProviders()
-	}
-	tpr = NewTypeProviderRegistry(tpr)
-	tpr.AddAll(DefaultTypeProviderRegistry)
-
 	return &defaultScheme[T, R]{
-		base:           b,
-		instance:       it,
-		typeproviders:  tpr,
-		unstructured:   ut,
-		defaultdecoder: defaultdecoder,
-		types:          KnownTypes[T, R]{},
-		acceptUnknown:  acceptUnknown,
+		base:          b,
+		instance:      it,
+		unstructured:  ut,
+		types:         KnownTypes[T, R]{},
+		acceptUnknown: acceptUnknown,
 	}, nil
-}
-
-func (d *defaultScheme[T, R]) TypeProviders() TypeProviderRegistry {
-	return d.typeproviders
 }
 
 func (d *defaultScheme[T, R]) BaseScheme() Scheme[T, R] {
@@ -324,11 +308,10 @@ func (d *defaultScheme[T, R]) Decode(data []byte, unmarshal Unmarshaler) (T, err
 		unmarshal = DefaultYAMLEncoding
 	}
 
-	var to TypedObject
 	un := d.CreateUnstructured()
 	t := ""
 	if reflect2.IsNil(un) {
-		t, _ = d.typeproviders.GetTypeFor(data, unmarshal)
+		t, _ = DefaultProvider{}.GetTypeFor(data, unmarshal)
 	} else {
 		err := unmarshal.Unmarshal(data, un)
 		if err != nil {
@@ -352,10 +335,10 @@ func (d *defaultScheme[T, R]) Decode(data []byte, unmarshal Unmarshaler) (T, err
 				return _nil, err
 			}
 		}
-		if d.acceptUnknown && reflect2.IsNil(un) {
+		if d.acceptUnknown && !reflect2.IsNil(un) {
 			return un, nil
 		}
-		return _nil, errors.ErrUnknown(errkind.KIND_OBJECTTYPE, to.GetType())
+		return _nil, errors.ErrUnknown(errkind.KIND_OBJECTTYPE, t)
 	}
 	return decoder.Decode(data, unmarshal)
 }
